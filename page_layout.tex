@@ -1,0 +1,83 @@
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage[latin1]{inputenc}
+%\usepackage[utf8]{inputenc}
+\usepackage[left]{eurosym} 
+\usepackage{times}
+\usepackage{pdfpages}
+\usepackage{todonotes}
+\usepackage{enumerate}
+
+% We don't want a special font for urls (looks bad with times):
+\urlstyle{same}
+
+% Graphics extensions and path:
+%\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+%\DeclareGraphicsExtensions{.eps,.ps}
+%\graphicspath{{figures/}}
+
+%
+% Page size
+%
+\usepackage[top=25mm,left=25mm,right=25mm,bottom=25mm]{geometry}
+
+\setlength{\headheight}{15pt}    % Necessary to avoid fancyhdr warning.
+
+
+\newcommand\LongTitle{Humidity Retrievals over Arctic}
+\newcommand\ShortTitle{Arctic Humidity}
+
+
+
+%
+% Heading
+%
+\newcommand{\pagevers}[2]{
+\ifnum\thepage=1 
+#1
+\else#2
+\fi
+}
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\chead{}
+%\rhead{\pagevers{}{\bf \thepage}}
+\rhead{\thepage}
+\rfoot{\small \it \ShortTitle\ ---\  Application to SNSB 2021-R}
+\cfoot{}
+\lfoot{}
+%\renewcommand{\headrulewidth}{\pagevers{0pt}{0.2pt}}
+\renewcommand{\headrulewidth}{0.2pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\newcommand{\docname}[1]{\lhead{\small #1}}
+
+%
+% Section titles
+%
+\usepackage[small]{titlesec}
+\titlespacing*{\section}{0pt}{*3.3}{*0.5}
+%
+% 
+%
+\def\compactitems{\parskip0pt\topsep0pt\partopsep0pt\parsep0pt\itemsep0pt}
+
+% Struts for better table formatting:
+\newcommand\T{\rule{0pt}{2.6ex}}
+\newcommand\B{\rule[-1.2ex]{0pt}{0pt}}
+
+
+\newcommand{\FIXME}[1]{{\bfseries \textcolor{red}{FIXME:} #1}}
+\newcommand{\md}[1]{\mbox{#1-d}}
+%\newcommand{\3d}{3d}
+
+%\hyphenation{3-d}
+\uchyph=0
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
