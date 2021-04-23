@@ -93,24 +93,28 @@ This project will build up on the ongoing efforts, hence we shall briefly summar
 %
 Towards creating as realistic and comprehensive retrieval databases as possible, we prepare for the complex radiative transfer calculations using the Global Precipitation Measurement (GPM) Microwave Imager (GMI) frequencies and polarisations. GMI provides observations upto 65$^{\circ}$ and is used as a baseline to formulate the full range of atmospheric and oceanic conditions, including snow and sea-ice emissivities over higher latitudes. The GMI measurements are simulated using Cloudsat radar measurments. A dbZ based systems as described by \citet{ekelund:using:20} is followed and onion peeling retreival method is used to invert Cloudsat reflectivities to Ice Water Content (IWC). The emissivity over land and water are taken from Tool to Estimate Land-Surface Emissivities at Microwave frequencies \citep{aires} and Tool to Estimate Sea-Surface Emissivity from Microwaves to sub-Millimeter waves \citep{prigent}. However for snow and sea-ice surface types, experimental and modelling studies \citep{harlow:2009:milli, harlow:2012:tundr,hewison:2002:airbo} are used to define the valid ranges of emissivity variability for 166\,GHz and 183 \,GHz frequencies. Differences between H and V polaristaion are also taken into account. For each snow/sea-ice observation (identified using ERA5), the corresponding emissivity is set randomly within the ranges of variability.
 
-
-
-
-
 \subsubsection{Training database}
 %
 \begin{figure*}[t]
 	\centering
-	\caption{}
-	\begin{subfigure}{.45\textwidth}
-		\caption{ Snow}
-		\includegraphics[height = 50mm]{Figures/hist2d_gmi_45-60_snow.png}
+	\begin{subfigure}{.24\textwidth}
+		\caption{Land}
+		\includegraphics[height =35mm]{Figures/hist2d_gmi_45-60_land.png}
 	\end{subfigure}
-	\begin{subfigure}{.45\textwidth}
-		\caption{ Sea-ice}
-		\includegraphics[height = 50mm]{Figures/hist2d_gmi_highlat_sea-ice.png}
+	\begin{subfigure}{.24\textwidth}
+		\caption{Water}
+		\includegraphics[height = 35mm]{Figures/hist2d_gmi_45-60_sea.png}
 	\end{subfigure}
+	\begin{subfigure}{.24\textwidth}
+	\caption{Snow}
+	\includegraphics[height = 35mm]{Figures/hist2d_gmi_45-60_snow.png}
+\end{subfigure}
+\begin{subfigure}{.24\textwidth}
+	\caption{ Sea-ice}
+	\includegraphics[height = 35mm]{Figures/hist2d_gmi_highlat_sea-ice.png}
+\end{subfigure}
 	\label{fig:histogram_2d}
+	\caption{}
 \end{figure*}
 
 In order to verify that the data in the training database covers the actual measurement space, the measured and simulated TB from GMI are compared. Figure~\ref{fig:histogram_2d} shows the polarisation difference (PD) and TB histograms from 166 GHz for different surface types. The PD is defined as difference between V and H polarisations. Over both sea-ice and snow, the PDs are mostly positive as a consequence of hydrometeor scattering, and the negative PDs arise from noise in clear-sky measurements. For all surface types, the availability of our simulations is higher than the GMI measurements. 
@@ -118,38 +122,50 @@ In order to verify that the data in the training database covers the actual meas
 
 \begin{figure*}[t]
 	\centering
-	\caption{WVP scatter}
-	\includegraphics[height = 50mm]{Figures/WVP_scatter_monthlymean.png} 
+	\includegraphics[height = 40mm]{Figures/WVP_scatter_monthlymean.png} 
 	\label{fig:wvp_scatter}
+	\caption{WVP scatter}
 \end{figure*}
 
-The QRNN algorithm described in sec~\ref{sec:qrnn} is applied to TB from 166 \,GHz and 183\,GHz to retrieve the corresponding WVPs. A comparison of the monthly means for the retrieved WVP and ERA5 WVP is displayed in fig.~\ref{fig:wvp_scatter}. To enable comparison on common scales, both datasets were re-gridded to 2.5$^{\circ}$. The correlation between the two datasets is 0.97. 
+The QRNN algorithm described in sec~\ref{sec:qrnn} is applied to TB from 166 \,GHz and 183\,GHz to retrieve the corresponding WVPs. A comparison of the monthly means for the retrieved WVP and ERA5 WVP is displayed in fig.~\ref{fig:wvp_scatter}. To enable comparison on common scales, both datasets were re-gridded to 2.5$^{\circ}$. The correlation between the monthly means between the two datasets is 0.97. 
 
 
-\subsection{Part A : Retrievals}
+\subsection{A: Retrievals}
+\subsubsection{Work packages}
 
-\subsubsection{Overview}
+\subsubsection*{A1: Basic atmospheric scenarios}
 
+As pointed out in \citet{eriksson:towar:20}: The input to the simulations can
+be obtained from atmospheric models providing a sufficiently detailed
+description of hydrometeors \citep[e.g.][]{wang2017statistical}. This approach
+relies on that the model mimics reality with sufficient accuracy, as it
+represents the a priori for the retrievals. Another option is to base the
+simulations directly on observations as far as possible. In this study, we shall base the input to simulations through model observations. Over two sub-domains of Arctic, regional reanalyses performed with HARMONIE-AROME system at 2.5\,km resolution are available. This additional reanalyses available for European Arctic have improved parametrisations and extensive use of satellite data not previously used. Additionally, another option could be to use ICON model
+(\url{www.mpimet.mpg.de/en/science/models}) that our colleagues in Hamburg have direct access to. 
 
-WPs - Simulate atmospheric scenarios (input from HARMONIE ?)
+\subsubsection*{A2 : Sea-ice emissivity}
+
 
 	- Sea-ice Emissivity 
 		- HR identification of sea-ice 	(info from Leif, figure?)
 		- 1D VAR retrievals of sea-ice emissivity?  
 	
-
+\subsubsection*{A3 : Database creation}
 	
 	- Database creation (Pencil Beam calculations) +  2d Antenna response, 
 	
-	- Retrieval Set-up 
-	
+
+\subsubsection*{A4 : Retrieval setup}	
  
-\subsection{Data Analysis}
+\subsection{B: Data Analysis}
+\subsubsection{Work packages}
+
+\subsubsection*{B1 : Comparison against other retrievals}
 
 WPs  - Comparison with existing WV products
 
 
-\subsection{Application}
+\subsubsection*{B2 : Assimilation}
 
 WPs  - Assimilation?
 
@@ -167,8 +183,6 @@ Patrick Eriksson (PE) ...
 Luisa Ickes (LI) started as an assistant professor during Jan 2020 and is advisor of PhD student Hannah Imhof (HI). Her general field is atmospheric modelling and the special research interests are the Arctic region and clouds in general. She will provide expertise in cloud physics, both when generating training data and evaluating retrievals.
 
 Leif Eriksson (LE) is group leader for the research group Radar Remote Sensing. His research is aimed at development of methods to make measurements of land and ocean with radar data. In this project, his expertise is sought on the use of synthetic aperture radar (SAR) observations to identify sea ice concentration.
-
-With respect to gender aspects, it is pointed out that the last three recruitments to this unit in formation are females (LI, IK and  HI), and the division as a whole is also moving towards a more equal gender balance. 
 
 \section{Satellite data}
 %
