@@ -1,0 +1,41 @@
+The Arctic climate is changing and the temperatures in the region are predicted
+to increase much more rapidly than the global average. Water is here key; the
+surface consists mainly of sea water, ice, or snow, and the weather is largely
+determined by the humidity and clouds in the atmosphere. These water reservoirs
+are not independent, atmospheric water and circulation are strongly influenced
+by the distribution of sea ice, that in its turn is affected by e.g.\ clouds'
+large influence on heat fluxes. This project will improve the use of satellite
+microwave radiometry to follow this intricate interplay inside the climate
+system. The primary objective is to provide better information on humidity, but
+water in all forms is involved and contributions regarding liquid water
+content, falling snow and sea ice variability are also foreseen. Sensors
+supported by the project include SSMIS, MHS, ATMS, MWI and AWS.
+
+To overcome the limitations in present retrievals, sophisticated 3D radiative
+transfer and machine learning (ML) will be combined. In short, SAR imagery and
+high resolution reanalysis data give input for simulating scenes of measured
+brightness temperatures, that are used to train the ML algorithm. We are here
+applying a methodology introduced by us, providing robust uncertainty estimates
+in contrast to standard ML. By using input at high spatial resolution and
+simulating scenes of satellite footprints, we avoid simplifications applied in
+standard retrievals as well as in data assimilation. Most importantly, no
+remapping of data is required and we can make use of the spatial information
+contained in overlap between the footprints. We can also handle the case of an
+inhomogeneous surface, that is required to provide accurate data over sea ice
+leads and along coastlines. To our best knowledge, all these aspects are fully
+novel. As a consequence, while other data users must reject large fractions of
+the observations, our approach needs no filtering with respect to interference
+of clouds and the surface. Albeit, some retrievals will have a poor precision,
+but the ML approach will capture this and there low weight can be given to those
+cases in a statistically sane manner.
+
+Both conically (SMMIS) and cross-track (such as ATMS) sensors will be
+considered. All data, for several years, of one instrument of each type will be
+processed, to provide retrieval datasets to be explored in e.g.\ climate
+studies. The overall procedure requires a deep understanding of the physics
+governing the observed radiances, knowledge that can be transferred to others
+and we expect significant impact of the project on the assimilation of the same
+data for weather forecasting. 
+
+
+
