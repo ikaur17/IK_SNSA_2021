@@ -26,7 +26,7 @@ leads and along coastlines. To our best knowledge, all these aspects are fully
 novel. As a consequence, while other data users must reject large fractions of
 the observations, our approach needs no filtering with respect to interference
 of clouds and the surface. Albeit, some retrievals will have a poor precision,
-but the ML approach will capture this and there low weight can be given to those
+but the ML approach will capture this and low weight can be given to those
 cases in a statistically sane manner.
 
 Both conically (SMMIS) and cross-track (such as ATMS) sensors will be

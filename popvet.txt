@@ -1,0 +1,34 @@
+Den plats på jorden där den globala uppvärmningen har mest uppenbar inverkan är
+Arktis, dvs. området norr om polcirkeln. Tyvärr förväntas Arktis fortsätta
+uppvärmas snabbare än resten av jorden, men det råder en hel del osäkerhet i
+förutsägelserna. Än så länge har klimatmodeller underskattat hastigheten på
+förändringen. Vi mnkelt åste helt elära oss mer om klimatet i Arktis och för
+detta behövs det bättre mätdata.
+
+Mätningar ifrån marken är få i Arktis, då regionen till stora delar är ett hav
+och för övrigt glest befolkad. Detta betyder att vi måste förlita oss på
+satellitmätningar i stor grad. Arktis är ett mycket molnigt område och det
+råder polarnatt stor del av året. Detta gör att många satellitinstrument har
+svårt att bidra, men mikrovågsmätningar kan utföras obehindrat och utgör
+främsta källan till satellitobservationer av Arktis. Dock är det svårt att
+extrahera atmosfärsdata ifrån mätningar som utförts över snö och is. Detta gör
+att existerande mätningar är starkt underutnyttjade och vårt projekt har som
+mål att förändra den situationen. Målet är speciellt viktigt då även fler
+mikrovågsinstrument kommer skjutas upp inom några år.
+
+Detta inkluderar AWS (Arctic Weather Satellite). Sverige är initiativtagare och
+största finansiär av den första AWS satelliten. I ett andra steg kommer AWS
+bestå av en hel konstellation av satelliter (ca 16 st). Vi kommer då teoretiskt
+kunna följa vädret i Arktis i detalj, men det kräver att informationen faktiskt
+kommer till nytta. Idag är det en bråkdel av data som verkligen utnyttjas för
+väderprognoser och klimatstudier. Det samma gäller för Sverige och t.ex.
+Östersjön, så projektet kan även bidra till att förbättra väderprognoser på
+hemmaplan.
+
+Projektet bygger på att vi i detalj kan simulera mätningarna och en AI-teknik
+(maskininlärning) som vi själva introducerat. Genom denna unika kombination 
+attackerar vi problemet ifrån ett nytt håll. I nuvarande metoder så måste flera
+förenklingar göras som vi undviker genom att använda AI och mer information kan
+utvinnas. 
+
+
