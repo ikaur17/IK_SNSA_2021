@@ -1,3 +1,4 @@
+
 \documentclass[12pt,oneside,a4paper]{article}
 %
 \input{page_layout}
@@ -59,6 +60,66 @@ Accurate measurements of water vapour profile over polar regions is through grou
 
 
 The lack of an accurate atmospheric data over the extensive Arctic sea-ice regions has implications in the forecast skill of numerical weather prediction (NWP) models. Though the  models are themselves suffer from limitations associated with the modelling of snow, sea ice, mixed-phase clouds, \citet{lawrence:2019:usean} show that MW sounding observations have a clear positive impact on the predictive skill in the summer months. Over the winter months the optimal utilisation of the observations is constrained by the presence of snow and sea-ice. Infact,  increasing the usage of satellite data over all surfaces in Integrated Forecast System (IFS) is identified as one of the priorities in ECMWF Strategy for 2021-2030. 
+
+
+\subsection{The way forward}
+
+\subsubsection{Problems and solutions}
+
+Remote sensing provides indirect measurements and the data retrieval always
+offers some degree of complexity. When using passive satellite microwave data
+to estimate humidities over the Arctic region, the main limiting factor is the
+surface's contribution to measured radiances. The special role of the surface
+is due to high atmospheric transmissivities and the difficulties to predict the
+surface properties of snow (on either land or ice). The main solution today is
+to reject channels with a significant surface contribution. This gives a low
+utilisation rate of the satellite data, and leaves the humidity close to the
+surface unconstrained.
+
+For this reason, efforts are being made to improve the "forward modelling",
+i.e.\ use auxiliary data to predict the local radiative properties of snow. This
+constitutes a very hard problem as the properties depend on a high number of
+snow variables. There will be progress in the area, but it will likely be slow.
+There is also another, less discussed, consideration, that the satellite
+footprint can cover both sea ice and open water. To handle this, a large scale
+ice-fraction is not sufficient, even the distribution of ice and water inside
+the footprint matters. That is, retrievals above leads are particularly
+problematic. The risk of having an inhomogeneuos footprint increases with
+footprint size, and good spatial resolution is thus advantageous even if the
+atmospheric fields show little horizontal variability.
+
+We will attack these issues from a new angle, now feasible due to progress in
+machine learning (ML). We avoid the limitations in traditional approaches by
+basing the inversions on a retrieval database, that is used to train the ML
+model. The simulated observations in the database are generated on
+high-resolution data and variations of both surface and atmospheric variables
+inside the footprint get included. In addition, by simulating "scenes" of
+adjacent footprints, and not just individual ones, the information hidden in
+the overlap of footprints can be exploited. The later effectively increases the
+horizontal resolution, but also provides background spatial information, such
+as indications on if the surface is homogeneous or mixed.
+
+
+\subsubsection{Some clarifications}
+
+The ML approach to be applied is introduced by us and operates in a Bayesian
+manner. Most importantly, it provides robust case specific error estimates.
+That is, an uncertainty is assigned to each individual retrieval.
+
+The database works like the prior assumptions in a standard Bayesian retrieval,
+but by using ML we are not restricted to Gaussian statistics, can handle
+strongly non-linear problems, and we can include aspects that are very
+difficult to handle in traditional retrievals (such as inhomogeneuos
+footprints). It is not needed to predict the conditions exactly where the
+observation is made, it suffices that simulations have a similar variability as
+reality. The ML algorithm uses the database provided to give the posterior
+knowledge of the quantity sought, given the scene of observations.
+
+If useful additional information can be provided, this can be incorporated in
+the ML training. For example, if there is progress in snow modelling and the
+local emissivity can be estimated with some certainty, this can be seen as a
+virtual measurement and be used to improve the ML model.
+
 
 
 \section{Project description}
