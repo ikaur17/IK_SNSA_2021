@@ -44,9 +44,38 @@
 
 
 \section{General summary}
+%
+The Arctic is a water world, experiencing rapid warming. Passive microwave 
+satellite observations are in general required to study water in the region and
+the basic aim of the project is to improve the utilisation of this data source,
+particularly the high-frequency part. The project targets water in the
+atmosphere. The primary concern is the estimation of humidity, but the retrieval
+system is highly versatile and retrievals of liquid water content, snowfall and
+sea-ice concentration (in order of priority) are also feasible.
 
-Water vapour plays an important role in the water and energy cycle over the polar regions, especially over Arctic. Over the Arctic, changes in the water vapour content are most sought to observe the warming trends, also known as Artic amplification. However over poles, the ground measurements are sparse and the performance of the satellite retrievals is constrained by the highly variable surface emissivity. The basic aim of this project is to develop new retrieval algorithms principally for total water vapour (TWV) from satellite microwave radiometer data over the Arctic. We propose a physically based retrievals, using a Bayesian machine learning based inversion method. Additionally, this algorithm could be used to also retrieve side products like total liquid water content (LWC) and sea-ice concentration (SIC). A key feature of this algorithm would be the use high resolution SAR imagery to classify sea-ice and open waters. Fine scale sea-ice information is necessary for distinguishing emissivity between different surface types. Another crucial aspect of the development line will be to use data from multiple microwave frequencies, with different footprint size, and avoiding the remapping of data. The overall scheme shall be similar to the one in a parallel SNSA 2021 proposal submitted by co-applicant Patrick Eriksson.
-The resulting dataset would play an important role in not only analysing the water vapour variability of the Arctic atmospheric but also in deciphering the trends the Arctic climate change.
+We propose a physically-based, Bayesian-oriented, machine-learning model for
+the task. The model is trained by detailed 3D radiative transfer simulations,
+to generate local scenes of measured radiances. The input to the simulations
+has a horisontal resolution finer than the size of the satellite footprints.
+For example, high-resolution SAR imagery is applied to describe the
+distrubution of sea-ice\,/\,open water at a resolution of ?\,km. As a result,
+aspects like inhomogeneous filling and overlap of the footprints are
+incorporated into the simulations and are then automatically included in the
+retrieval process, in contrast to existing data extraction. Precipitation and
+clouds are modelled in detail by combining a mesoscale model with an in-house
+expertise on microwave radiative transfer involving hydrometeors. As we cover
+all significant parts of the ``forward problem'', our inversions can be truly
+``all-sky''; we aim for a zero data rejection (for the set of channels
+considered).
+
+The resulting dataset(s) would play an important role in not only analysing the
+variability of water above the Arctic, but also in deciphering the
+ongoing trends involved in the Arctic amplification of global warming.
+
+
+
+%Water vapour plays an important role in the water and energy cycle over the polar regions, especially over Arctic. Over the Arctic, changes in the water vapour content are most sought to observe the warming trends, also know and Artic amplification. However over poles, the ground measurements are sparse and the performance of the satellite retrievals is constrained by the highly variable surface emissivity. The basic aim of this project is to develop new retrieval algorithms principally for total water vapour (TWV) from satellite microwave radiometer data over the Arctic. We propose a physically based retrievals, using a Bayesian machine learning based inversion method. Additionally, this algorithm could be used to also retrieve side products like total liquid water content (LWC) and sea-ice concentration (SIC). A key feature of this algorithm would be the use high resolution SAR imagery to classify sea-ice and open waters. Fine scale sea-ice information is necessary for distinguishing emissivity between different surface types. Another crucial aspect of the development line will be to use data from multiple microwave frequencies, with different footprint size, and avoiding the remapping of data. The overall scheme shall be similar to the one in a parallel SNSA 2021 proposal submitted by co-applicant Patrick Eriksson.
+%The resulting dataset would play an important role in not only analysing the water vapour variability of the Arctic atmospheric but also in deciphering the trends the Arctic climate change.
 
 
 \subsection{Background}
@@ -54,10 +83,40 @@ The resulting dataset would play an important role in not only analysing the wat
 \label{sec:background}
 Some info from Luisa (1/2 page)
 
-\subsection{Previous works}
+\subsection{Previous work}
 %
 \label{sec:previousworks}
-Accurate measurements of water vapour profile over polar regions is through ground based microwave radiometers or radiosondes. For a comprehensive overview as required for monitoring purposes can only be achieved through space borne observations. However, over polar regions, the main challenge encountered by microwave (MW) observations based retrieval algorithms is the high and highly variable surface emissivity which dominates the signal. The most important work towards retreival of WVP from microwave humidity sounders (such as Advanced Microwave Sounding Unit-B (AMSU-B) and Microwave Humidity Sounder (MHS)) comes from University of Bremen. Their retrieval concept was initiated by \citet{miao:2001:atmos}, where they utilized water vapour absorption channels around 183\,GHz and  150\,GHz window channel to retrieve total water vapour (TWV) upto 7\,kg m$^{-2}$. Subsequently in the study \citep{} they extended this approach to include 89\,GHz to retrieve TWV upto 15\,kg m$^{-2}$ over sea-ice regions and formulated a relationship between sea-ice emissivity over different frequencies using measurement campaigns. Later, \cite{scarlat:2018:retri} extended the method to include all surface types using AMSU-B. A comparison of the retrieved WVP against ERA-Interim showed that the over winter months, the RMSD was  1.86\,kg m$^{-2}$ but over summer months the errors were up to 5.67 m$^{-2}$ due to the algorithm being constrained by its upper retrieval limit of 15 m$^{-2}$. Besides MW sounding, an attempt at TWV has also been made using low frequency microwave observations from Advanced Microwave Scanning Radiometer (AMSR). For example, \citet{scarlat:2017:exper} use optimal estimation (OEM) for multi-parameter retrieval over Arctic, and \citet{zabolotskikh:2020:anadv} attempt at TWV retrieval over both open ocean and sea-ice regions using neural networks based inversion. In both products, the highest uncertainties in the retrieval are linked to the empirical estimates of surface emissivity over sea-ice regions.
+%
+Ground-based measurements inside the Artic region are very sparse and can not
+be used for monotoring, but are still of interest for validation purpose.
+Hence, we must rely on satellite data. As the area experiences polar night and
+has extensive cloud cover, optical and infrared techniques suffer basic
+limititations that microwave radiometry lacks and the later is the set of
+satellite sensors of concern here. Over the polar regions, a challenge
+encountered by passive microwave observations is the high and highly variable
+contribution by surface emission.
+
+The most important work towards retreival of WVP from microwave humidity
+sounders (such as Advanced Microwave Sounding Unit-B (AMSU-B) and Microwave
+Humidity Sounder (MHS)) comes from University of Bremen. Their retrieval
+concept was initiated by \citet{miao:2001:atmos}, where they utilized water
+vapour absorption channels around 183\,GHz and 150\,GHz window channel to
+retrieve total water vapour (TWV) upto 7\,kg m$^{-2}$. Subsequently in the
+study \citep{} they extended this approach to include 89\,GHz to retrieve TWV
+upto 15\,kg m$^{-2}$ over sea-ice regions and formulated a relationship between
+sea-ice emissivity over different frequencies using measurement campaigns.
+Later, \cite{scarlat:2018:retri} extended the method to include all surface
+types using AMSU-B. A comparison of the retrieved WVP against ERA-Interim
+showed that the over winter months, the RMSD was 1.86\,kg m$^{-2}$ but over
+summer months the errors were up to 5.67 m$^{-2}$ due to the algorithm being
+constrained by its upper retrieval limit of 15 m$^{-2}$. Besides MW sounding,
+an attempt at TWV has also been made using low frequency microwave observations
+from Advanced Microwave Scanning Radiometer (AMSR). For example,
+\citet{scarlat:2017:exper} use optimal estimation (OEM) for multi-parameter
+retrieval over Arctic, and \citet{zabolotskikh:2020:anadv} attempt at TWV
+retrieval over both open ocean and sea-ice regions using neural networks based
+inversion. In both products, the highest uncertainties in the retrieval are
+linked to the empirical estimates of surface emissivity over sea-ice regions.
 
 
 The lack of an accurate atmospheric data over the extensive Arctic sea-ice regions has implications in the forecast skill of numerical weather prediction (NWP) models. Though the  models are themselves suffer from limitations associated with the modelling of snow, sea ice, mixed-phase clouds, \citet{lawrence:2019:usean} show that MW sounding observations have a clear positive impact on the predictive skill in the summer months. Over the winter months the optimal utilisation of the observations is constrained by the presence of snow and sea-ice. Infact,  increasing the usage of satellite data over all surfaces in Integrated Forecast System (IFS) is identified as one of the priorities in ECMWF Strategy for 2021-2030. 
@@ -69,13 +128,13 @@ The lack of an accurate atmospheric data over the extensive Arctic sea-ice regio
 
 Remote sensing provides indirect measurements and the data retrieval always
 offers some degree of complexity. When using passive satellite microwave data
-to estimate humidities over the Arctic region, the main limiting factor is the
-surface's contribution to measured radiances. The special role of the surface
-is due to high atmospheric transmissivities and the difficulties to predict the
-surface properties of snow (on either land or ice). The main solution today is
-to reject channels with a significant surface contribution. This gives a low
-utilisation rate of the satellite data, and leaves the humidity close to the
-surface unconstrained.
+to estimate humidities over the Arctic region, as mentioned, the main
+limiting factor is the surface's contribution to measured radiances. The
+special role of the surface is due to high atmospheric transmissivities and the
+difficulties to predict the surface properties of snow (on either land or ice).
+The main solution today is to reject channels with a significant surface
+contribution. This gives a low utilisation rate of the satellite data, and
+leaves the humidity close to the surface unconstrained.
 
 For this reason, efforts are being made to improve the "forward modelling",
 i.e.\ use auxiliary data to predict the local radiative properties of snow. This
