@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{multirow}
 \captionsetup[figure]{font=normalsize,labelfont=normalsize}
 
 %
@@ -43,7 +44,7 @@
 
 \section{General summary}
 
-Water vapour plays an important role in the water and energy cycle over the polar regions, especially over Arctic. Over the Arctic, changes in the water vapour content are most sought to observe the warming trends, also know and Artic amplification. However over poles, the ground measurements are sparse and the performance of the satellite retrievals is constrained by the highly variable surface emissivity. The basic aim of this project is to develop new retrieval algorithms principally for total water vapour (TWV) from satellite microwave radiometer data over the Arctic. We propose a physically based retrievals, using a Bayesian machine learning based inversion method. Additionally, this algorithm could be used to also retrieve side products like total liquid water content (LWC) and sea-ice concentration (SIC). A key feature of this algorithm would be the use high resolution SAR imagery to classify sea-ice and open waters. Fine scale sea-ice information is necessary for distinguishing emissivity between different surface types. Another crucial aspect of the development line will be to use data from multiple microwave frequencies, with different footprint size, and avoiding the remapping of data. The overall scheme shall be similar to the one in a parallel SNSA 2021 proposal submitted by co-applicant Patrick Eriksson.
+Water vapour plays an important role in the water and energy cycle over the polar regions, especially over Arctic. Over the Arctic, changes in the water vapour content are most sought to observe the warming trends, also known as Artic amplification. However over poles, the ground measurements are sparse and the performance of the satellite retrievals is constrained by the highly variable surface emissivity. The basic aim of this project is to develop new retrieval algorithms principally for total water vapour (TWV) from satellite microwave radiometer data over the Arctic. We propose a physically based retrievals, using a Bayesian machine learning based inversion method. Additionally, this algorithm could be used to also retrieve side products like total liquid water content (LWC) and sea-ice concentration (SIC). A key feature of this algorithm would be the use high resolution SAR imagery to classify sea-ice and open waters. Fine scale sea-ice information is necessary for distinguishing emissivity between different surface types. Another crucial aspect of the development line will be to use data from multiple microwave frequencies, with different footprint size, and avoiding the remapping of data. The overall scheme shall be similar to the one in a parallel SNSA 2021 proposal submitted by co-applicant Patrick Eriksson.
 The resulting dataset would play an important role in not only analysing the water vapour variability of the Arctic atmospheric but also in deciphering the trends the Arctic climate change.
 
 
@@ -63,7 +64,26 @@ The lack of an accurate atmospheric data over the extensive Arctic sea-ice regio
 
 \section{Project description}
 
-The retrieval of atmospheric parameters from brightness temperatures is an inverse problem. The Bayesian retrieval methods provide a way to handle the ill-posedness of the retrieval problem and its associated uncertainties. In this project, we utilize  Quantile Regression Neural Network (QRNN), a machine learning technique to invert the simulated brightness temperatures (TB) to WVP. The database with simulated TB profiles is generated using Atmospheric Radiative Transfer Simulator (ARTS). This scheme developed here would be applicable to existing cross-track scanners operating in frequency range between 89 and 183\,GHz (e.g.\, Advanced Technology Microwave Sounder, ATMS), but also the upcoming satellite instruments like Arctic Weather Satellite (AWS). The project can also be termed as preparatory step towards operational use of AWS data.
+The retrieval of atmospheric parameters from brightness temperatures is an inverse problem. The Bayesian retrieval methods provide a way to handle the ill-posedness of the retrieval problem and its associated uncertainties. In this project, we utilize  Quantile Regression Neural Network (QRNN), a machine learning technique to invert the simulated brightness temperatures (TB) to WVP. The database with simulated TB profiles is generated using Atmospheric Radiative Transfer Simulator (ARTS). 
+ 
+\subsection{Satellite instruments}
+This scheme developed here would not only be applicable to existing conical radiometers like  Special Sensor Microwave Imager/Sounder (SSMIS) and cross-track radiometers e.g.\, Advanced Technology Microwave Sounder (ATMS); but also the upcoming satellite instruments like Arctic Weather Satellite (AWS) and MicroWave Imager (MWI). The project can also be termed as preparatory step towards operational use of AWS data. Table~\ref{tab:instruments} gives a brief description of the satellite instruments which are relevant to this study. 
+
+\begin{table}[t]
+	\caption{Specifications of satellite instruments relevant to this study.}
+	\label{tab:specifications_instruments}	
+	\begin{tabular}{rrr}
+
+		Instruments & Frequency range 	& Resolution  \\
+					& [GHz]				& [km]			\\
+		\hline			
+		SSMIIS		&
+
+		\hline			
+
+	\end{tabular}
+\end{table}
+
  
 \subsection{Tools}
 \subsubsection{QRNN}
