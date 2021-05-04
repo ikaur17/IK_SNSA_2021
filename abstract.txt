@@ -29,7 +29,7 @@ of clouds and the surface. Albeit, some retrievals will have a poor precision,
 but the ML approach will capture this and low weight can be given to those
 cases in a statistically sane manner.
 
-Both conically (SMMIS) and cross-track (such as ATMS) sensors will be
+Both conical (SSMIS) and cross-track (such as ATMS) sensors will be
 considered. All data, for several years, of one instrument of each type will be
 processed, to provide retrieval datasets to be explored in e.g.\ climate
 studies. The overall procedure requires a deep understanding of the physics
