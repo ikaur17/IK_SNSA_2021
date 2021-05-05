@@ -89,16 +89,15 @@ Some info from Luisa (1/2 page)
 \label{sec:previousworks}
 %
 Ground-based measurements inside the Artic region are very sparse and can not
-be used for monotoring, but are still of interest for validation purpose.
+be used for monitoring, but are still of interest for validation purpose.
 Hence, we must rely on satellite data. As the area experiences polar night and
 has extensive cloud cover, optical and infrared techniques suffer basic
-limititations that microwave radiometry lacks and the later is the set of
+limitations that microwave radiometry lacks and the later is the set of
 satellite sensors of concern here. Over the polar regions, a challenge
 encountered by passive microwave observations is the high and highly variable
-contribution by surface emission.
+contribution by surface emission. 
 
-The most important work towards retreival of WVP from microwave humidity
-sounders (such as Advanced Microwave Sounding Unit-B (AMSU-B) and Microwave
+The existing satellite based water vapor retrievals do offer well sampled datasets, but the skill of the datasets is highly variable over different atmospheric and surface conditions. For example, in central Arctic, the differences between monthly means over summer months can be as high as 30\% \citep{crewell:2021:asyst}. The most important work towards retrieval of WVP from microwave humidity sounders (such as Advanced Microwave Sounding Unit-B (AMSU-B) and Microwave
 Humidity Sounder (MHS)) comes from University of Bremen. Their retrieval
 concept was initiated by \citet{miao:2001:atmos}, where they utilized water
 vapour absorption channels around 183\,GHz and 150\,GHz window channel to
@@ -119,7 +118,8 @@ retrieval over both open ocean and sea-ice regions using neural networks based
 inversion. In both products, the highest uncertainties in the retrieval are
 linked to the empirical estimates of surface emissivity over sea-ice regions.
 
-
+A recent study by \citet{graham:2019:evalu} compared the reanalyses against ground observations and showed that ERA5 reanalyses have high skill in estimating total column water vapour but fail at humidity estimates. The general moisture profiles from reanalyses work well only when thick cloud layers extend close to the surface. However, for most cases the representation of cloudiness is underestimated or is at wrong altitudes.
+ 
 The lack of an accurate atmospheric data over the extensive Arctic sea-ice regions has implications in the forecast skill of numerical weather prediction (NWP) models. Though the  models are themselves suffer from limitations associated with the modelling of snow, sea ice, mixed-phase clouds, \citet{lawrence:2019:usean} show that MW sounding observations have a clear positive impact on the predictive skill in the summer months. Over the winter months the optimal utilisation of the observations is constrained by the presence of snow and sea-ice. Infact,  increasing the usage of satellite data over all surfaces in Integrated Forecast System (IFS) is identified as one of the priorities in ECMWF Strategy for 2021-2030. 
 
 
@@ -138,16 +138,12 @@ contribution. This gives a low utilisation rate of the satellite data, and
 leaves the humidity close to the surface unconstrained.
 
 For this reason, efforts are being made to improve the "forward modelling",
-i.e.\ use auxiliary data to predict the local radiative properties of snow. This
-constitutes a very hard problem as the properties depend on a high number of
-snow variables. There will be progress in the area, but it will likely be slow.
-There is also another, less discussed, consideration, that the satellite
-footprint can cover both sea ice and open water. To handle this, a large scale
-ice-fraction is not sufficient, even the distribution of ice and water inside
-the footprint matters. That is, retrievals above leads are particularly
-problematic. The risk of having an inhomogeneuos footprint increases with
+i.e.\ use auxiliary data to predict the local radiative properties of snow and sea-ice \citep[e.g.][]{tonboe:2010:thesi}. This constitutes a very hard problem as the properties depend on a high number of realistic snow and sea-ice variables. There will be progress in the area, but it will likely be slow. There is also another, less discussed, consideration, that the satellite footprint can cover both sea ice and open water. To handle this, a large scale ice-fraction is not sufficient, even the distribution of ice and water inside the footprint matters. That is, retrievals above leads are particularly
+problematic. The risk of having an inhomogeneous footprint increases with
 footprint size, and good spatial resolution is thus advantageous even if the
 atmospheric fields show little horizontal variability.
+
+\todo{text from Leif}
 
 We will attack these issues from a new angle, now feasible due to progress in
 machine learning (ML). We avoid the limitations in traditional approaches by
@@ -185,11 +181,9 @@ virtual measurement and be used to improve the ML model.
 
 \section{Project description}
 %
-This project aims at providing standalone physically based water retrievals over the Arctic, which can be comparable to or better in performance than ERA5 reanalyses. A recent study by \citet{graham:2019:evalu} compared the reanalyses against ground observations and showed that ERA5 reanalyses have high skill in estimating total column water vapour but fail at humidity estimates. The general moisture profiles from reanalyses work well only when thick cloud layers extend close to the surface. However, for most cases the representation of cloudiness is underestimated or is at wrong altitudes. 
+This project aims at providing standalone physically based water retrievals over the Arctic, which can be comparable to or better in performance than ERA5 reanalyses. The idea would be to combine sophisticated 3D radiative transfer with machine learning to solve the Artic water retrieval and the associated uncertainties using only microwave observations. The main task would be to estimate humidity, however a simultaneous retrieval of liquid water content would also be undertaken as a second priority. 
 
-In this study, the idea would be to combine sophisticated 3D radiative transfer with machine learning to handle the solve the Artic water retrieval and the associated uncertainties using only microwave observations. The main task would be to estimate humidity, however a simultaneous retrieval of liquid water content would also be undertaken as a second priority. Here the ambition would also be to include observations from the temperature sounding channels around 50\,GHz and with conical scanners, lower frequencies like 22\,GHz and 37\,GHz could also be included.
-
-Thee scheme of the overall project is described in Figure~\ref{fig:flowchart}, and the details are described as parts of Work Package in Sec~\ref{sec:wp} 
+Thee scheme of the overall project is displayed in Figure~\ref{fig:flowchart}, and the details are described as work packages in Sec~\ref{sec:wp} 
 
 \begin{figure*}[t]
 	\centering
@@ -210,17 +204,20 @@ The scheme developed here would not only be applicable to existing conical radio
 
 As a first step, the methodology would be applied to high frequency channels of SSMIS. Inclusion of lower frequencies and further extension to cross-track microwave radiometers (e.g. ATMS) would be the next step. Development of the scheme with ATMS and would be a preparatory step towards the use of AWS measurements. 
 
-
-\todo{complete table} 
 \begin{table}[t]
 	\caption{Specifications of satellite instruments relevant to this study.}
 	\label{tab:specifications_instruments}	
-	\begin{tabular}{rrr}
+	\begin{tabular}{crrr}
 
-		Instruments & Frequency range 	& Resolution  \\
-					& [GHz]				& [km]			\\
+		Instruments &Type& Frequency range 	& Resolution  \\
+					&     & 					& [km]			\\
 		\hline			
-		SSMIS		&\\
+		SSMIS		&conical	&19\,GHz to 183\,GHz& \\
+		ATMS        &cross-track&23\,GHz to 183\,GHz &\\
+		\hline
+		MWI         &conical     &18\,GHz to 183\,GHz&\\
+		AWS         &cross-track &50\,GHz to 325\,GHz&\\ 
+		
 		\hline			
 
 	\end{tabular}
@@ -322,14 +319,12 @@ The output of this work package would be a broad set of 3D atmospheric scenarios
 \subsubsection*{WP 2 : Emissivity model}
 %
 \label{sec:emissivity}
-An important step to accomplish this project task is the estimation of the surface emissivity spectra over a multitude of surface types. The use of existing forward modelling\citep[e.g.][]{tonboe:2010:thesi} for sea-ice emissivity is limited due to the difficulties in obtaining realistic sea-ice and snow profiles which are required as input. Presently we use an empirical snow and sea-ice emissivity model valid for conical scanners. Assuming specular reflection, we used existing modelling and experimental studies\citep{harlow:2009:milli, harlow:2012:tundr,hewison:2002:airbo} to define the valid ranges of emissivity variability for 166\,GHz and 183\,GHz frequencies.  Differences between H and V polarisation are also taken into account. If $\epsilon_{193}, \epsilon_{159}$ represents the emissivities for 193\,GHz and 159\,GHz respectively, then 
-
+An important step to accomplish this project task is the estimation of the surface emissivity spectra over a multitude of surface types. Presently we use an empirical snow and sea-ice emissivity model valid for conical scanners. Assuming specular reflection, we used existing modelling and experimental studies\citep{harlow:2009:milli, harlow:2012:tundr,hewison:2002:airbo} to define the valid ranges of emissivity variability for 166\,GHz and 183\,GHz frequencies.  Differences between H and V polarisation are also taken into account. If $\epsilon_{193}, \epsilon_{159}$ represents the emissivities for 193\,GHz and 159\,GHz respectively, then
 \begin{align}
 \epsilon_{193}& = \min({N(\mu_{193}, \sigma_{193}^{2}), 1}) ; \mu_{193} = 0.78, \sigma_{193} = 0.07 \\
 \epsilon_{159}& = \min(\epsilon_{193} - N(\mu_{159}, \sigma_{159}^{2})) ;  \mu_{159} = 0.02, \sigma_{159} = 0.02\,
 \end{align}
 where, $N(\mu, \sigma^{2})$ represents the standard normal distribution with mean $\mu$ and standard deviation $\sigma$. The differences between the horizontal and vertical polarisations for both frequencies, $d_{159}$ and $d_{193}$ are estimated as:
-
 \begin{align}
 d_{159}& = U(a_1, b_1) ; a_1 = 0.005, b_1 = 0.055\\
 d_{193}& = d_{159} - U(a_2, b_2) ; a_2 = 0.015, b_2 = 0.025 \,
@@ -337,7 +332,7 @@ d_{193}& = d_{159} - U(a_2, b_2) ; a_2 = 0.015, b_2 = 0.025 \,
 where, $U(a, b)$ represents a uniform distribution between a and b. 
 
 
-As a first step, we would use existing studies to extend this model to lower frequencies such as 89\,GHz and temperature sounding channels around 50\,GHz. Such an empirical model would be easy to fine-tune by comparing results from pure forward modelling and actual measurements. However, the final aim would be to use Optimal Estimation method (OEM) to extract microwave emissivity spectra from TB for sea-ice surface types. We would consider joint retrievals of emissivity spectra over all frequencies. The basic idea of joint retrievals is to find a set of emissivity estimates for all considered frequencies which would simultaneously give TB closest to the measurements. Synergy between such retrievals is especially useful to exploit the emissivity correlations between frequencies, and make it more viable from assimilation perspective. We would use ARTS for full OEM retrievals.
+As a first step, we would use existing studies to extend this model to lower frequencies such as 89\,GHz and temperature sounding channels around 50\,GHz. Such an empirical model would be easy to fine-tune by comparing results from pure forward modelling and actual measurements. However, the final aim would be to use Optimal Estimation method (OEM) on the high resolution scenes to extract microwave emissivity spectra from TB for sea-ice surface types. We would consider joint retrievals of emissivity spectra over all frequencies. The basic idea of joint retrievals is to find a set of emissivity estimates for all considered frequencies which would simultaneously give TB closest to the measurements. Synergy between such retrievals is especially useful to exploit the emissivity correlations between frequencies, and make it more viable from assimilation perspective. We would use ARTS for full OEM retrievals.
 
 The output of this work package would be measures of high resolution all-weather sea-ice emissivities at different frequencies. This would be an important result which could enhance the assimilation of microwave observations over polar regions. Another indirect outcome of this WP would be towards the retrieval of sea-ice concentrations (see sec.~\ref{sec:other_retrievals})  
 
@@ -363,43 +358,55 @@ The package for QRNN is already available as a part the Typhon software package 
 \subsubsection*{WP 5 : Retrievals}
 %
 \label{sec:retrievals}
-In the development phase, combinations of various frequency channels would be tried to attain the best possible performance. Initially, only the high frequency channels (160+190 GHz region) from conical scanner (SSMIS) would be explored. However with known saturation problems associated with these channels over high humidity regions, measurements from 50+89\,GHz region would also be incorporated. Adding additional input channels or other auxiliary input to the retrieval set-up would be straightforward task. 
-On the other hand, extending the study to cross-track scanners would require slightly more work. Firstly, a larger database covering the various incidence angles would be necessary, but we would focus only on the central part of the swath, and avoid working with very large footprints towards the edge of the swath. 
+%
+This WP would cover the development of the humidity retrieval product from initiation with SSMIS to the extension to cross-track scanners. Over open waters, 22\,GHz is considered as the best choice for humidity retrievalsl but over sea-ice regions, owing to high surface emissivity, often high frequencies (89+150+183\,GHz) are employed for humidity retrievals. Albeit, it might also be beneficial to include temperature sounding channels around 50\,GHz to resolve the low level cloudiness in a better way and hence improve the humidity profiles. Though we primarily aim for the humidity retrievals, estimates of LWC are also not completely independent. Infact, the synergies between the two quantities could be exploited to correct the estimates for each other. For LWC, 19\,GHz and 37\,GHz are best candidates over open oceans, but over sea-ice regions the combination 89 + 150\,GHz would be tested. The pivotal part of these retrievals would be using ML on the overlapping footprints to extract the hidden information without any explicit treatment. 
 
-During the development phase detailed evaluation (see sec.~\ref{sec:evaluation}) of the retrievals with existing retrieval products would be made to identify the areas requiring improvement. \todo{deliver results to Bremen?}
+As a second step, the retrievals would be extended to the cross-track scanners. This would require slightly more work. Firstly, a larger database covering the various incidence angles would be necessary, but we would focus only on the central part of the swath, and avoid working with very large footprints towards the edge of the swath. 
 
+
+We would start the test retrievals in parallel to database creation so that an early feedback on any issues could be made. QRNN is versatile to allow extension to include additional input channels or auxiliary data but the main task would be required to analyse the results. During the development phase evaluation (see sec.~\ref{sec:evaluation}) of the retrievals with existing retrieval products would be made to identify the areas requiring improvement.
+
+The output of this WP would be one or more retrieval databases for humidity and LWC.
 
 \subsubsection*{WP 6: Evaluation and dissemination}
 %
 \label{sec:evaluation}
-The main tasks of this work package are to understand the quality of the retrievals, and pave way for their optimal use. The existing WVP retrievals from polar orbiting satellites do offer well sampled datasets, but the skill of the datasets is highly variable over different atmospheric and surface conditions. For example, in central Arctic, the differences between monthly means over summer months can be as high as 30\% \citep{crewell:2021:asyst}. Since in this project we aim to solve the retrieval issues associated with the ever complex and changing surface characteristics of sea-ice, a detailed assessment would be expected to improve the applicability and future retrieval algorithms. In this work package a thorough investigation with the available \textit{in-situ} data, satellite products and reanalysis would be made. Firstly, direct comparisons with radio-soundings or data from flight campaigns would be used to estimate the accuracy of the product and reveal the uncertainties on finer scales.  Statistical comparisons with other microwave and IR based humidity products  will also be made. Time series of daily and monthly means, and the probability distribution functions (PDFs) of the retrievals would be analysed. Here it would also be important to analyse the accuracy over seasons and different surface types. 
+The evaluation part shall go hand-in-hand with the retreival WP. The main tasks of this work package are to evaluate the quality of the retrievals, understand the discrepancies and pave way for their optimal use. Since in this project we aim to solve the retrieval issues associated with the ever complex and changing surface characteristics of sea-ice, a detailed assessment would be expected to improve the applicability and future retrieval algorithms. In this work package a thorough investigation with the available \textit{in-situ} data, satellite products and reanalysis would be made. Firstly, direct comparisons with radio-soundings or data from flight campaigns would be used to estimate the accuracy of the product and reveal the uncertainties on finer scales.  Statistical comparisons with other microwave and IR based humidity products  will also be made. Time series of daily and monthly means, and the probability distribution functions (PDFs) of the retrievals would be analysed. Here it would also be important to analyse the accuracy over seasons and different surface types. 
 
-
-\todo{ECMWF + SMHI usage}
-
-\todo {add PE ECWMF fellow and Dave}
+The dissemination of the retrieved dataset will be through journal articles. The assessment of how well the produced dataset answers the needs of NWP communities will also be addressed though collaborations with ECMWF and SMHI. Patrick Eriksson has been one of leading contributors towards the preparation of AWS and would also be involved in a Nordic weather study with SMHI around AWS. Furthermore, the contact with ECMWF is strengthened by the fact that Patrick Eriksson has been appointed ECMWF fellow. Contact with David Duncan at ECMWF would also be continued. 
 
 \subsubsection*{WP 7 : Additional Retrievals}
 %
 \label{sec:other_retrievals}
-\todo{LWC}
+
+Secondary products which would be considered include snow and sea-ice concentrations.  
+
 
 \todo{snow}
 
-The MW emissivity spectra has characteristic features important to retrieve the sea-ice concentration. The high resolution emissivity retrievals can additionally be post-processed to generate estimates of SIC. The post-processing simply involves matching the 1D-VAR emissivity estimates over sea-ice to a pre-computed catalog of mean emissivity spectra. Infact, validation of the SIC against other available products like MiRS (Microwave Integrated Retrieval System) based operational cyrogenic products (\url{https://www.star.nesdis.noaa.gov/mirs/highresolutionv.php}) can also serve as an indirect validation of the emissivity retrievals.
+The high resolution emissivity retrievals can be additionally post-processed to generate estimates of sea-ice concetration. The post-processing simply involves matching the 1D-VAR emissivity estimates over sea-ice to a pre-computed catalog of mean emissivity spectra. 
+
+%Infact, validation of the SIC against other available products like MiRS (Microwave Integrated Retrieval System) based operational cyrogenic products  (\url{https://www.star.nesdis.noaa.gov/mirs/highresolutionv.php}) can also serve as an indirect validation of the emissivity retrievals.
 
 \subsection{Impact and social benefits}
 %
+\label{sec:impact}
+Arctic amplification is garnering rapid interest towards improving the polar weather predictions. Nonetheless, the accurate weather predictions over Arctic are also relevant for mid-latitude weather forecasts. An attempt towards improving numerical predictions is to improve the accuracy of satellite derived products, to amplify their usage in numerical models.
 
+The ambition is to use the standalone retrievals in NWP models at SMHI and ECMWF.
+This result is important as LWP is an important quantity for numeric weather prediction and climate research. Moreover, it is a major contributor to uncertainty in retrievals of sea ice concentration by passive microwave radiometry  
+
+As a society warming of the Arctic can open up additional shipping routes, but to avoid the associated risks, accurate weather predictions are crucial.
 
 \subsection{Risk Assessment}
-0.3 page
+%
+\label{risk}
+
+less than 0.25 page or maybe a table?
 
 \section{Collaborations}
 
 In order to receive feedback on the retrieval database, we would closely collaborate with group working on WVP retrievals at University of Bremen to cover the analysis and validation aspects. Additionally, a contact with the group of Prof. Susanne Crewell would be also be useful for validation purposes. Their group is operating the MiRaC airborne sensor (a combined radar and radiometer) during polar flights (Mech et al., 2019).
-
-\todo{ECMWF assimilation?}
 
 \section{Staff situation}
 \label{sec:staff}
@@ -414,8 +421,7 @@ Leif Eriksson (LE) is group leader for the research group Radar Remote Sensing. 
 
 \section{Satellite data}
 %
-All satellite data of concern will be publicly available, as coming from
-operational weather sensors.
+All satellite data of concern, in this project, is publicly available. 
 
 {\footnotesize
 	\bibliography{j_abbr,refs_pe1,references}
