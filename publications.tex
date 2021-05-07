@@ -1,0 +1,38 @@
+\documentclass[12pt,fleqn,a4paper]{article} 
+%
+\input{page_layout}
+
+\docname{Publications}
+
+\newcounter{pubnr}
+
+
+% References:
+\usepackage{bibentry}
+\usepackage{natbib}
+\bibliographystyle{agufull04}     
+\newcommand{\doi}[1]{doi: \url{#1}}
+\newcommand{\mybibentry}[1]{
+  \stepcounter{pubnr}
+  \noindent \arabic{pubnr}. \bibentry{#1} \vspace{1ex}\\}
+
+
+
+\begin{document}
+
+\nobibliography{j_abbr,publications}
+
+\subsection*{Ten selected publications}
+
+\mybibentry{duncan:anexp:19}
+\mybibentry{eriksson:arts2:11}
+\mybibentry{eriksson:agene:18}
+\mybibentry{eriksson:towar:20}
+\mybibentry{kaur:canma:21}
+\mybibentry{pfreundschuh:aneur:18}
+\mybibentry{acp-19-5111-2019}
+
+\end{document}
+
+
+%------------------------------------------------------------------------------
