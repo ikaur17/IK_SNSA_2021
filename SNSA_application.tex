@@ -242,10 +242,10 @@ Towards creating as realistic and comprehensive retrieval databases as possible,
 
 \subsubsection*{Snow emissivity model}
 %
-Assuming specular reflection, we use the existing modelling and experimental studies\citep{harlow:2009:milli, harlow:2012:tundr,hewison:2002:airbo} to define the valid ranges of emissivity variability for frequencies in 160-183\,GHz band. If $\epsilon_{193}, \epsilon_{159}$ represents the emissivities for 193\,GHz and 159\,GHz respectively, then
+We use the existing modelling and experimental studies\citep{harlow:2009:milli, harlow:2012:tundr,hewison:2002:airbo} to define the valid ranges of emissivity variability for frequencies in 160-183\,GHz band. If $\epsilon_{193}, \epsilon_{159}$ represents the emissivities for 193\,GHz and 159\,GHz respectively, then
 \begin{align}
 \epsilon_{193}& = \min({N(\mu_{193}, \sigma_{193}^{2}), 1}) ; \mu_{193} = 0.78, \sigma_{193} = 0.07 \\
-\epsilon_{159}& = \min(\epsilon_{193} - N(\mu_{159}, \sigma_{159}^{2})) ;  \mu_{159} = 0.02, \sigma_{159} = 0.02\,
+\epsilon_{159}& = \min(\epsilon_{193} - N(\mu_{159}, \sigma_{159}^{2}), 1) ;  \mu_{159} = 0.02, \sigma_{159} = 0.02\,
 \end{align}
 where, $N(\mu, \sigma^{2})$ represents the standard normal distribution with mean $\mu$ and standard deviation $\sigma$. The differences between the horizontal and vertical polarisations for both frequencies, $d_{159}$ and $d_{193}$ are estimated as:
 \begin{align}
@@ -283,7 +283,7 @@ In order to verify that the data in the training database covers the actual meas
 Over both sea-ice and snow, the PDs are mostly positive as a consequence of hydrometeor scattering, and the negative PDs arise from noise in clear-sky measurements. For all surface types, the variability of our simulations is higher than the GMI measurements, indicating that the simulations can cover all possible range of conditions. This is an important result as we cannot expect the retrieval to provide a complete picture if the training database covers the measurement range partially.
 
 \subsubsection{Retrievals}
-
+\label{sec:preliminary_results}
 \begin{figure*}[t]
 	\centering
 	\begin{subfigure}{.54\textwidth}
@@ -320,7 +320,9 @@ The output of this work package would be a broad set of 3D atmospheric scenarios
 \subsubsection*{WP 2 : Emissivity model}
 %
 \label{sec:emissivity}
-An important step to accomplish this task is the estimation of the surface emissivity spectra over a multitude of surface types. As a first step, we would consider using existing studies to extend the snow-emissivity model (see sect.~\ref{sec:radiative_transfer}) to lower frequencies such as 89\,GHz and 50\,GHz. Such an empirical model would be easy to fine-tune by comparing results from pure forward modelling and actual measurements. However, the final aim would be to use the Optimal Estimation method (OEM) on the high-resolution scenes to extract microwave emissivity spectra from TB. We would consider joint retrievals of emissivity spectra over all frequencies. The basic idea of joint retrievals is to find a set of emissivity estimates for all considered frequencies which would simultaneously give TB closest to the measurements. The synergy between such retrievals is especially useful to understand the emissivity correlations between frequencies, Thus making it more viable from an assimilation perspective. We would use ARTS for full OEM retrievals.
+An important step to accomplish this task is the estimation of the surface emissivity spectra over a multitude of surface types. As a first step, we would consider using existing studies to extend the snow-emissivity model (see sect.~\ref{sec:radiative_transfer}) to lower frequencies such as 89\,GHz and 50\,GHz. Such an empirical model would be easy to fine-tune by comparing results from pure forward modelling. However, the final aim would be to use the Optimal Estimation method (OEM) on the high-resolution scenes to extract microwave emissivity spectra from TB. We would consider joint retrievals of emissivity spectra over all frequencies. The basic idea of joint retrievals is to find a set of emissivity estimates for all considered frequencies which would simultaneously give TB closest to the measurements. The synergy between such retrievals is especially useful to understand the emissivity correlations between frequencies. Thus making it more viable from an assimilation perspective. Retrievals in this WP would be made assuming both specular and lambertian reflection. The differences between the two are immaterial for conical instruments, but for cross-track instruments the realistic situations could be considered as a combinations of two. Tests would be made to judge exactly what combination works best for various surface types. 
+
+%ARTS would be used for OEM retrievals.
 
 The output of this work package would be measures of high resolution all-weather sea-ice emissivities at different frequencies. 
 	
@@ -344,14 +346,12 @@ The package for QRNN is already available as a part of the Typhon software packa
 %
 \label{sec:retrievals}
 %
-This WP would cover the development of the humidity retrieval product from initiation with SSMIS to the extension to cross-track scanners. Over open waters, 22\,GHz is considered as the best choice for humidity retrievals but over sea-ice regions, owing to high surface emissivity, often high frequencies (89+150+183\,GHz) are employed for humidity retrievals. Albeit, it might also be beneficial to include temperature sounding channels around 50\,GHz to resolve the low-level cloudiness in a better way and hence improve the humidity profiles. Though we primarily aim for the humidity retrievals, estimates of LWC are also not completely independent. In fact, the synergies between the two quantities could be exploited to correct the estimates for each other. For LWC, 19\,GHz and 37\,GHz are best candidates over open oceans, but over sea-ice regions the combination 89 + 150\,GHz would be tested. The pivotal part of these retrievals would be using ML on the overlapping footprints to extract the hidden information without any explicit treatment. 
+In this WP, as a first step, we will extend our preliminary results for WVP (see sect.~\ref{sec:preliminary_results}) to include regions north of 65$^\circ$, using SSMIS.  An extension to lower frequencies such as  89\,GHz and temperature sounding channels around 50\,GHz will be tested. Including the latter can also be beneficial to resolve the low-level cloudiness and hence improve the humidity profiles. Infact, the estimates of LWC and WVP are not completely independent. The synergies between the two quantities can be exploited to correct the estimates for each other. For LWC over sea-ice, the combination 89+150\,GHz have been suggested by \citet{laue:2007:poten} to cancel out the effect of emissivities. Inclusion of 22\,GHz and 37\,GHz to increase sensitivity to high humidity regions could also be considered, though on a lower priority. These channels are more important over open-waters than sea-ice regions. Later, the best channel combinations will also be used to estimate the humidity profiles. The ultimate goal is to include sufficient channels such that the full information content of tropospheric water is preserved. Extension to cross-track scanners shall also be made. This will require slightly more work. A larger database covering the various incidence angles will be necessary, but we would focus only on the central part of the swath, and avoid working with very large footprints towards the edge of the swath. 
+%The pivotal part of these retrievals would be using ML on the overlapping footprints to extract the hidden information without any explicit treatment.
 
-As a second step, the retrievals would be extended to the cross-track scanners. This would require slightly more work. Firstly, a larger database covering the various incidence angles would be necessary, but we would focus only on the central part of the swath, and avoid working with very large footprints towards the edge of the swath. 
+We will start the test retrievals in parallel to database creation so that early feedback on any issues could be made. QRNN is versatile to allow extension to include additional input channels or auxiliary data but the main task will be to analyse the results. During the development phase evaluation, (see sect.~\ref{sec:evaluation}) of the retrievals with existing retrieval products will be made to identify the areas requiring improvement.
 
-
-We would start the test retrievals in parallel to database creation so that early feedback on any issues could be made. QRNN is versatile to allow extension to include additional input channels or auxiliary data but the main task would be to analyse the results. During the development phase evaluation, (see sec.~\ref{sec:evaluation}) of the retrievals with existing retrieval products would be made to identify the areas requiring improvement.
-
-The output of this WP would be one or more retrieval databases for humidity and LWC.
+The output of this WP would be one or more retrieval databases for WVP, LWC and humidity profiles.
 
 \subsubsection*{WP 6: Evaluation and dissemination}
 %
@@ -390,13 +390,14 @@ computational risks\\
 conflict of interest  
 
 \section{Collaborations}
-\todo{include Bremen?}
-In order to receive feedback on the retrieval database, we would closely collaborate with group working on WVP retrievals at University of Bremen to cover the analysis and validation aspects. Additionally, a contact with the group of Prof. Susanne Crewell could also be useful for validation purposes. Their group is operating the MiRaC airborne sensor (a combined radar and radiometer) during polar flights (Mech et al., 2019).
+\todo{include Bremen? Crewell group?}
+ECMWF and SMHI ?
+%In order to receive feedback on the retrieval database, we would closely collaborate with group working on WVP retrievals at University of Bremen to cover the analysis and validation aspects. Additionally, a contact with the group of Prof. Susanne Crewell could also be useful for validation purposes. Their group is operating the MiRaC airborne sensor (a combined radar and radiometer) during polar flights (Mech et al., 2019).
 
 \section{Staff situation/ Roles and responsibilities?}
 \label{sec:staff}
 %
-Inderpreet Kaur started as a postdoctoral researcher in the division during March 2020.  She is presently working with both millimetre (mm) and sub-millimetre (mm) data for retrieval of atmospheric ice. During the project period, she shall spend 80\,\% of her time the project. Patrick Eriksson is a professor and has main expertise in atmospheric radiative transfer and retrieval methods. He will spend 5\% of his time on this project and contribute to all WPs. Luisa Ickes is an Assistant Professor, and has special research interests are the Arctic region and clouds in general. She will provide expertise in cloud physics, both when generating training data and evaluating retrievals (WPs 5, 6). Leif Eriksson is group leader for the research group Radar Remote Sensing. His research is aimed at development of methods to make measurements of land and ocean with radar data. In this project, his expertise is sought on the use of SAR data in the project. He will mainly contribute to WP 1 and WP 7. 
+Inderpreet Kaur started as a postdoctoral researcher in the division during March 2020.  She is presently working with retrieval of atmospheric ice using microwave instruments. During the project period, she shall spend 80\,\% of her time the project. Patrick Eriksson is a professor and has main expertise in atmospheric radiative transfer and retrieval methods. He will spend 5\% of his time on this project and contribute to all WPs. Luisa Ickes is an Assistant Professor, and has special research interests are the Arctic region and clouds in general. She will provide expertise in cloud physics, both when generating training data and evaluating retrievals (WPs 5, 6). Leif Eriksson is group leader for the research group Radar Remote Sensing. His research is aimed at development of methods to make measurements of land and ocean with radar data. In this project, his expertise is sought on the use of SAR data in the project. He will mainly contribute to WP 1 and WP 7. 
 
 \section{Satellite data}
 %
