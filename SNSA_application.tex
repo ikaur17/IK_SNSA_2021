@@ -204,7 +204,7 @@ As a first step, the methodology would be applied to high-frequency channels of 
 \subsubsection{HARMONIE-AROME}
 %
 \label{sec:harmonie}
-HARMONIE-AROME numerical weather prediction (NWP) system is the first regional reanalysis focussing on the Arctic regions. It is one of the canonical model configurations of the ALADIN-HIRLAM NWP () system which focuses on short-range meso-scale forecasts. Details about the model microphysics, parametrizations and other configuration choices can be found in \citep{bengtsson:2017:harmo}. The reanalyses cover the period from 1997 to 2021 and are available at 2.5\,km horizontal resolution, thus providing more local detailing than ERA5 global reanalysis products.  
+HARMONIE-AROME numerical weather prediction (NWP) system is the first regional reanalysis focussing on the Arctic regions. It is one of the canonical model configurations of the ALADIN-HIRLAM NWP system which focuses on short-range meso-scale forecasts. Details about the model microphysics, parametrizations and other configuration choices can be found in \citet{bengtsson:2017:harmo}. The reanalyses cover the period from 1997 to 2021 and are available at 2.5\,km horizontal resolution, thus providing more local detailing than ERA5 global reanalysis products.  
  
 \subsubsection{QRNN}
 %
@@ -244,13 +244,13 @@ Towards creating as realistic and comprehensive retrieval databases as possible,
 %
 We use the existing modelling and experimental studies\citep{harlow:2009:milli, harlow:2012:tundr,hewison:2002:airbo} to define the valid ranges of emissivity variability for frequencies in 160-183\,GHz band. If $\epsilon_{193}, \epsilon_{159}$ represents the emissivities for 193\,GHz and 159\,GHz respectively, then
 \begin{align}
-\epsilon_{193}& = \min({N(\mu_{193}, \sigma_{193}^{2}), 1}) ; \mu_{193} = 0.78, \sigma_{193} = 0.07 \\
-\epsilon_{159}& = \min(\epsilon_{193} - N(\mu_{159}, \sigma_{159}^{2}), 1) ;  \mu_{159} = 0.02, \sigma_{159} = 0.02\,
+\epsilon_{193}& = \min({N(\mu_{193}, \sigma_{193}^{2}), 1});\, \mu_{193} = 0.78, \sigma_{193} = 0.07 \\
+\epsilon_{159}& = \min(\epsilon_{193} - N(\mu_{159}, \sigma_{159}^{2}), 1) ;\,  \mu_{159} = 0.02, \sigma_{159} = 0.02\,
 \end{align}
 where, $N(\mu, \sigma^{2})$ represents the standard normal distribution with mean $\mu$ and standard deviation $\sigma$. The differences between the horizontal and vertical polarisations for both frequencies, $d_{159}$ and $d_{193}$ are estimated as:
 \begin{align}
-d_{159}& = U(a_1, b_1) ; a_1 = 0.005, b_1 = 0.055\\
-d_{193}& = d_{159} - U(a_2, b_2) ; a_2 = 0.015, b_2 = 0.025 \,
+d_{159}& = U(a_1, b_1) ;\, a_1 = 0.005, b_1 = 0.055\\
+d_{193}& = d_{159} - U(a_2, b_2) ;\, a_2 = 0.015, b_2 = 0.025 \,
 \end{align}
 where, $U(a, b)$ represents a uniform distribution between a and b. 
 
@@ -337,7 +337,7 @@ The WP output shall be batches of simulated radiances.
 \subsubsection*{WP 4 : Retrieval setup}
 %
 \label{sec:setup}
-The use of the retrieval database shall be made without introducing any re-mapping between the different footprint sizes. All footprints inside a region would be used as input, and the database generation will mimic this. This approach will make much better use of the spatial information provided by the overlap of instrument footprints. The target resolution would not be compromised and retrievals can be made at the highest possible resolution while preserving the information at their native resolution. This has been demonstrated using 2DVAR in \citep{duncan:onthe:19}. But here we shall aim to achieve the same purpose by using QRNN. In fact, by doing this by a database (and not 2DVAR) we are not restricted to describe spatial correlations by covariance matrices and the QRNN version should be even more advantageous.
+The use of the retrieval database shall be made without introducing any re-mapping between the different footprint sizes. All footprints inside a region would be used as input, and the database generation will mimic this. This approach will make much better use of the spatial information provided by the overlap of instrument footprints. The target resolution would not be compromised and retrievals can be made at the highest possible resolution while preserving the information at their native resolution. This has been demonstrated using 2DVAR in \citet{duncan:onthe:19}. But here we shall aim to achieve the same purpose by using QRNN. In fact, by doing this by a database (and not 2DVAR) we are not restricted to describe spatial correlations by covariance matrices and the QRNN version should be even more advantageous.
 
 The package for QRNN is already available as a part of the Typhon software package \citep{lemke:2020:typhon}. The implementation of the retrieval algorithm shall be relatively straightforward but the challenge would be to find the best performing neural-network architecture so as to achieve the best model performance. Besides, it would also be important to test the sensitivity of various auxiliary data to the retrieval performance. In order to run the retrievals, we shall make use of the Chalmers central computational cluster (C3SE).
 
@@ -384,13 +384,12 @@ As a society, the anthropogenic climate change over poles has economic and polit
 \subsection{Risk Assessment}
 %
 \label{sec:risk}
-data risks\\
-technological risk (emissivity calculation)\\
-computational risks\\
-conflict of interest  
+The overall risk around this project is considered to be low. The project in continuation or on similar lines as the other projects the group is working on.
+
+ There is some speculation around the usage of low frequencies like 22\,GHz and 37\,GHz considering their large footprint size. \todo{incomplete...} 
 
 \section{Collaborations}
-\todo{include Bremen? Crewell group?}
+
 ECMWF and SMHI ?
 %In order to receive feedback on the retrieval database, we would closely collaborate with group working on WVP retrievals at University of Bremen to cover the analysis and validation aspects. Additionally, a contact with the group of Prof. Susanne Crewell could also be useful for validation purposes. Their group is operating the MiRaC airborne sensor (a combined radar and radiometer) during polar flights (Mech et al., 2019).
 
