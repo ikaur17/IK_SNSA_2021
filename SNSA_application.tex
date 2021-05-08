@@ -1,4 +1,3 @@
-
 \documentclass[12pt,oneside,a4paper]{article}
 %
 \input{page_layout}
@@ -33,6 +32,9 @@
 }
 
 
+\newcommand\intodo[1]{{\color{red} [* #1 *]}}
+
+
 \begin{document}
 	
 	
@@ -46,28 +48,29 @@
 
 \section{General summary}
 %
-The Arctic is a water world, experiencing rapid warming. Passive microwave 
-satellite observations are in general required to study water in the region and
-the basic aim of the project is to improve the utilisation of this data source,
-particularly the high-frequency part. The project targets water in the
-atmosphere. The primary concern is the estimation of humidity, but the retrieval
-system is highly versatile and retrievals of liquid water content, snowfall and
-sea-ice concentration (in order of priority) are also feasible.
+The Arctic is a water world, experiencing rapid warming. Passive microwave
+satellite observations are required for a comprehensive view of the water in
+the region, and the basic aim of the project is to improve the utilisation of
+this data source, particularly the high-frequency part. The project targets
+water in the atmosphere. The primary concern is humidity, but
+the retrieval system is highly versatile and retrievals of liquid water
+content, snowfall and sea-ice concentration (in order of priority) are also
+feasible.
 
 We propose a physically-based, Bayesian-oriented, machine-learning model for
 the task. The model is trained by detailed 3D radiative transfer simulations,
 to generate local scenes of measured radiances. The input to the simulations
 has a horizontal resolution finer than the size of the satellite footprints.
 For example, high-resolution SAR imagery is applied to describe the
-distribution of sea-ice\,/\,open water at a resolution of ?\,km. As a result,
+distribution of sea-ice\,/\,open water at a resolution of \todo{?\,km}. As a result,
 aspects like inhomogeneous filling and overlap of the footprints are
-incorporated into the simulations and are then automatically included in the
+incorporated into the simulations and are then automatically considered in the
 retrieval process, in contrast to existing data extraction. Precipitation and
-clouds are modelled in detail by combining a mesoscale model with an in-house
+clouds are modelled in detail by combining a mesoscale model with the in-house
 expertise on microwave radiative transfer involving hydrometeors. As we cover
 all significant parts of the ``forward problem'', our inversions can be truly
 ``all-sky''; we aim for a zero data rejection (for the set of channels
-considered).
+included).
 
 The resulting dataset(s) would play an important role in not only analysing the
 variability of water above the Arctic, but also in deciphering the
@@ -89,36 +92,53 @@ Some info from Luisa (1/2 page)
 \label{sec:previousworks}
 %
 Ground-based measurements inside the Artic region are very sparse and can not
-be used for monitoring, but are still of interest for validation purpose.
+be used for monitoring (but are still of interest for validation purpose).
 Hence, we must rely on satellite data. As the area experiences polar night and
 has extensive cloud cover, optical and infrared techniques suffer basic
-limitations that microwave radiometry lacks and the later is the set of
-satellite sensors of concern here. Over the polar regions, a challenge
-encountered by passive microwave observations is the high and highly variable
-contribution by surface emission. 
+limitations and we consider here only satellite-based passive microwave data to
+avoid these issues. Over the polar regions, a challenge encountered by
+passive microwave observations is the high and highly variable contribution by
+surface emission.
 
-The most important work towards retrieval of WVP from microwave humidity sounders (such as Advanced Microwave Sounding Unit-B (AMSU-B) and Microwave
-Humidity Sounder (MHS)) comes from University of Bremen. Their retrieval
-concept was initiated by \citet{miao:2001:atmos}, where they utilized water
-vapour absorption channels around 183\,GHz and 150\,GHz window channel to
-retrieve total water vapour (TWV) upto 7\,kg m$^{-2}$. Subsequently in the
-study \citep{} they extended this approach to include 89\,GHz to retrieve TWV
-upto 15\,kg m$^{-2}$ over sea-ice regions and formulated a relationship between
-sea-ice emissivity over different frequencies using measurement campaigns.
-Later, \cite{scarlat:2018:retri} extended the method to include all surface
-types using AMSU-B. A comparison of the retrieved WVP against ERA-Interim
-showed that the over winter months, the RMSD was 1.86\,kg m$^{-2}$ but over
-summer months the errors were up to 5.67\,kg m$^{-2}$ due to the algorithm being
-constrained by its upper retrieval limit of 15\,kg m$^{-2}$. Besides MW sounding,
-an attempt at TWV has also been made using low frequency microwave observations
+The most important work towards stand-alone retrievals of WVP\todo{WVP not
+  defined} from microwave humidity sounders (such as Advanced Microwave
+Sounding Unit-B (AMSU-B) and Microwave Humidity Sounder (MHS)) comes from
+University of Bremen. Their retrieval concept was initiated by
+\citet{miao:2001:atmos}, where they utilized water vapour absorption channels
+around 183\,GHz and 150\,GHz window channel to retrieve total water vapour
+(TWV)\todo{Really needed to have both TWV and WVP?} upto 7\,kg m$^{-2}$. Subsequently in the study \todo{Add reference} they
+extended this approach to include 89\,GHz to retrieve TWV upto 15\,kg m$^{-2}$
+over sea-ice regions and formulated a relationship between sea-ice emissivity
+over different frequencies using measurement campaigns. Later,
+\cite{scarlat:2018:retri} extended the method to include all surface types
+using AMSU-B. A comparison of the retrieved WVP against ERA-Interim showed that
+the over winter months, the RMSD was 1.86\,kg m$^{-2}$ but over summer months
+the errors were up to 5.67\,kg m$^{-2}$ due to the algorithm being constrained
+by its upper retrieval limit of 15\,kg m$^{-2}$. Besides MW sounding, an
+attempt at TWV has also been made using low frequency microwave observations
 from Advanced Microwave Scanning Radiometer (AMSR). For example,
 \citet{scarlat:2017:exper} use optimal estimation (OEM) for multi-parameter
 retrieval over Arctic, and \citet{zabolotskikh:2020:anadv} attempt at TWV
 retrieval over both open ocean and sea-ice regions using neural networks based
 inversion. In both products, the highest uncertainties in the retrieval are
-linked to the empirical estimates of surface emissivity over sea-ice regions. Infact the skill of all available satellite based WV retrievals in this region is highly variable over different atmospheric and surface conditions. For example, in central Arctic, the differences between monthly means over summer months can be as high as 30\% \citep{crewell:2021:asyst}.
- 
-The lack of an accurate atmospheric data over the extensive Arctic sea-ice regions has implications in the forecast skill of numerical weather prediction (NWP) models. Though the  models are themselves suffer from limitations associated with the modelling of snow, sea ice, mixed-phase clouds, \citet{lawrence:2019:usean} show that MW sounding observations have a clear positive impact on the predictive skill in the summer months. Over the winter months the optimal utilisation of the observations is constrained by the presence of snow and sea-ice. Infact,  increasing the usage of satellite data over all surfaces in Integrated Forecast System (IFS) is identified as one of the priorities in ECMWF Strategy for 2021-2030. 
+linked to the empirical estimates of surface emissivity over sea-ice regions.
+Infact the skill of all available satellite based WV retrievals in this region
+is highly variable over different atmospheric and surface conditions. For
+example, in central Arctic, the differences between monthly means over summer
+months can be as high as 30\% \citep{crewell:2021:asyst}.
+
+The lack of an accurate atmospheric data over the extensive Arctic sea-ice
+regions has implications in the forecast skill of numerical weather prediction
+(NWP) models. Though the models are themselves suffer from limitations
+associated with the modelling of snow, sea ice, mixed-phase clouds,
+\citet{lawrence:2019:usean} show that MW sounding observations have a clear
+positive impact on the predictive skill in the summer months. Over the winter
+months the optimal utilisation of the observations is constrained by the
+presence of snow and sea-ice. Infact, increasing the usage of satellite data
+over all surfaces in Integrated Forecast System (IFS) is identified as one of
+the priorities in ECMWF Strategy for 2021-2030. 
+\intodo{Try to expand this paragraph}
+
 
 
 \subsection{The way forward : Problems and solutions }
@@ -136,7 +156,14 @@ contribution. This gives a low utilisation rate of the satellite data, and
 leaves the humidity close to the surface unconstrained.
 
 For this reason, efforts are being made to improve the "forward modelling",
-i.e.\ use auxiliary data to predict the local radiative properties of snow and sea-ice \citep[e.g.][]{tonboe:2010:thesi}. This constitutes a very hard problem as the properties depend on a high number of realistic snow and sea-ice variables. There will be progress in the area, but it will likely be slow. There is also another, less discussed, consideration, that the satellite footprint can cover both sea ice and open water. To handle this, a large scale ice-fraction is not sufficient, even the distribution of ice and water inside the footprint matters. That is, retrievals above leads are particularly
+i.e.\ use auxiliary data to predict the local radiative properties of snow and
+sea-ice \citep[e.g.][]{tonboe:2010:thesi}. This constitutes a very hard problem
+as the properties depend on a high number of snow and sea-ice
+variables. There will be progress in the area, but it will likely be slow.
+There is also another, less discussed, consideration, that the satellite
+footprints can cover both sea ice and open water. To handle this, a large scale
+ice-fraction is not sufficient, even the distribution of ice and water inside
+the footprint matters. This makes retrievals above leads particularly
 problematic. The risk of having an inhomogeneous footprint increases with
 footprint size, and good spatial resolution is thus advantageous even if the
 atmospheric fields show little horizontal variability.
@@ -166,24 +193,59 @@ as indications on if the surface is homogeneous or mixed.
 \section{Project description}
 %
 \subsection{Scientific objectives and considerations}
-The main objective of this study is to provide physical standalone water retrievals over the Arctic from microwave instruments, which can be comparable to or better in performance than existing reanalyses and satellite based products. The idea would be to combine a database based on sophisticated 3D radiative transfer with ML to solve the Arctic water retrieval and estimate the associated uncertainties. The primary task would be to estimate humidity, however, a simultaneous retrieval of liquid water content would also be undertaken as a second priority.
-Nonetheless, before going ahead, it is crucial to elucidate the following:
+The main objective of this study is to provide physical, stand-alone, water
+retrievals over the Arctic from microwave instruments, which can be comparable
+to or better in performance than existing reanalyses and satellite based
+products. The basic idea is to combine a database based on sophisticated 3D
+radiative transfer with ML to retrieve water properties and estimate the
+associated uncertainties. The primary aim is to estimate humidity, however, a
+simultaneous retrieval of liquid water content will also be undertaken as a
+second priority. Nonetheless, before going ahead, it is crucial to elucidate
+the following:
 \begin{itemize}
-\item  The retrieval database will work like the prior assumptions in a standard Bayesian retrieval, but by using ML we will not be restricted to Gaussian statistics. ML can handle strong non-linear problems, and we can include aspects that are very difficult to handle in traditional retrievals (such as inhomogeneous footprints). It is not needed to predict the conditions exactly where the observation is made, it is sufficient for the simulations to have a similar variability as reality. The ML algorithm uses the database provided to give the posterior knowledge of the quantity sought, given the scene of observations.
-\item  If useful additional information is available during the course of the project, it can be incorporated into the ML training. For example, if there is progress in snow modelling and the local emissivity can be estimated with some certainty, this can be seen as a virtual measurement and be used to improve the ML model. 
+\item The retrieval database will work like the prior assumptions in a standard
+  Bayesian retrieval, but by using ML we will not be restricted to Gaussian
+  statistics. ML can handle strong non-linear problems, and we can include
+  aspects that are very difficult to handle in traditional retrievals (such as
+  inhomogeneous footprints). It is not needed to predict the conditions exactly
+  where the observation is made, it is sufficient for the simulations to have a
+  similar variability as reality. The ML algorithm uses the database provided
+  to give the posterior knowledge of the quantity sought, given the scene of
+  observations.
+\item If useful additional information gets available during the course of the
+  project, it can be incorporated into the ML training. For example, if there
+  is progress in snow modelling and the local emissivity can be estimated with
+  some certainty, this can be seen as a virtual measurement and be used to
+  improve the ML model.
 \end{itemize}
 
 \subsection{Data and tools}
 % 
 \subsubsection{Satellite instruments}
 
-The scheme developed here would not only be applicable to existing conical radiometers like  Special Sensor Microwave Imager/Sounder (SSMIS) and cross-track radiometers e.g.\, Advanced Technology Microwave Sounder (ATMS); but also to the upcoming satellite instruments like Arctic Weather Satellite (AWS) and MicroWave Imager (MWI). MWI would be part of the next generation of the European Organisation for the Exploitation of Meteorological Satellites Polar System - Second Generation. AWS is also an ESA mission and is envisaged as part of the constellation of small polar-orbiting satellites providing measurements at a high temporal resolution. AWS originates in an initiative by SNSA, and Sweden (through SNSA) is also the largest contributor to the funding of the mission. A brief description of the relevant instruments is provided in Table~\ref{tab:specifications_instruments}. 
+The scheme developed here would not only be applicable to existing conical
+radiometers like Special Sensor Microwave Imager/Sounder (SSMIS) and
+cross-track radiometers e.g.\, Advanced Technology Microwave Sounder (ATMS);
+but also to the upcoming satellite instruments like Arctic Weather Satellite
+(AWS) and MicroWave Imager (MWI). MWI would be part of the next generation of
+the European Organisation for the Exploitation of Meteorological Satellites
+Polar System - Second Generation. AWS is also an ESA mission and is envisaged
+as part of the constellation of small polar-orbiting satellites providing
+measurements at a high temporal resolution. AWS originates in an initiative by
+SNSA, and Sweden (through SNSA) is also the largest contributor to the funding
+of the mission. A brief description of the relevant instruments is provided in
+Table~\ref{tab:specifications_instruments}.
 
-As a first step, the methodology would be applied to high-frequency channels of SSMIS. Inclusion of lower frequencies and a further extension to cross-track microwave radiometers (e.g. ATMS) would be the next step. Development of the scheme with ATMS and would be a preparatory step towards the use of AWS measurements. 
+As a first step, the methodology would be applied to high-frequency channels of
+SSMIS. Inclusion of lower frequencies and a further extension to cross-track
+microwave radiometers (e.g. ATMS) would be the next step. Development of the
+scheme with ATMS and would be a preparatory step towards the use of AWS
+measurements. \intodo{Maybe explain why cross-track is a bit more difficult}
 
 \begin{table}[t]
 	\centering
-	\caption{Specifications of satellite instruments relevant to this study.}
+	\caption{Specifications of the satellite instruments most relevant to this
+      study.}
 	\label{tab:specifications_instruments}	
 	\begin{tabular}{lccc}
 
@@ -220,11 +282,15 @@ In all the applications QRNN has been tested so far, it has outperformed the exi
 \subsubsection{ARTS}
 \label{sec:arts}
 % 
-The backbone of our work is building the database with simulated TB using ARTS (Atmospheric Radiative Transfer Simulator, \url{www.radiativetransfer.org}). ARTS has some unique features, but in this context, it is rather the completeness and flexibility of ARTS that is helpful. There is now a second cornerstone of the ARTS infrastructure, the
-associated database of single scattering properties \citep{eriksson:agene:18}.
-The main part contains data for 36 particle ``habits'' assuming totally random
-orientation (TRO). Already this makes the database the most comprehensive one.
-Some data for azimuthally random orientation (ARO) are also at hand
+The backbone of our work is building the database with simulated TB using ARTS
+(Atmospheric Radiative Transfer Simulator, \url{www.radiativetransfer.org}).
+ARTS has some unique features, but in this context, it is rather the
+completeness and flexibility of ARTS that is helpful. There is now a second
+cornerstone of the ARTS infrastructure, the associated database of single
+scattering properties \citep{eriksson:agene:18}. The main part contains data
+for 36 particle ``habits'' assuming totally random orientation (TRO). Already
+this makes the database the most comprehensive one. Some data for azimuthally
+random orientation (ARO) are also at hand
 \citep{brath:micro:20,ekelund:micro:20}. In principle, more ARO data of ice
 hydrometeors are needed, but in \citet{baralakas:intro:21} we show that the ARO
 case can be fairly well approximated by scaling TRO data. In an ongoing master
@@ -310,10 +376,10 @@ The QRNN algorithm described in sect.~\ref{sec:qrnn} is applied to measured TB f
 \begin{figure*}[t]
 	\centering
 	\includegraphics[trim=140 370 40 125,clip,height = 60mm]{flowchart.pdf} 
-	\caption{Flowchart displaying schema of the proposed retrieval system.}
+	\caption{Flowchart of the proposed retrieval system.}
 	\label{fig:flowchart}
 \end{figure*}
-\label{sec:emissivity}
+\label{sec:atmscenes}
 The inputs to the forward model can be based on either atmospheric models providing a sufficiently detailed description of hydrometeors or on observations as far as possible \citep{ekelund:using:20}. In this study, we shall use the former approach and use reanalyses from HARMONIE-AROME to create a database of the atmospheric cases. HARMONIE-AROME does not cover all Arctic regions, so if needed, reanalyses from ERA5 could be included. If found necessary, we could also explore the latter approach and apply our own microphysical assumptions. Furthermore, the high-resolution SAR imagery would be employed to characterize the sea-ice/open waters. The fine spatial resolution of SAR would facilitate better mapping of inhomogeneous surface types and thus reduce errors with modelling ocean-atmosphere heat flux in mixed surface types such as coastlines and polynyas. To our best knowledge, this would be the first instance where such high-resolution information would be used. Also see fig.~\ref{fig:flowchart} for the flowchart.
 The output of this work package would be a broad set of 3D atmospheric scenarios to be used as input to the radiative transfer simulations.
 
