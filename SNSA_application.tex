@@ -157,22 +157,34 @@ The main objective of this study is to provide physical, stand-alone, water retr
 % 
 \subsubsection{Satellite instruments}
 
-The scheme developed here will not only be applicable to existing conical
-radiometers like Special Sensor Microwave Imager/Sounder (SSMIS) and
-cross-track radiometers e.g.\, Advanced Technology Microwave Sounder (ATMS);
-but also to the upcoming satellite instruments like Arctic Weather Satellite
-(AWS) and MicroWave Imager (MWI). MWI will be part of the next generation of
-the European Organisation for the Exploitation of Meteorological Satellites
-Polar System - Second Generation. AWS is also an ESA mission and is envisaged
-as part of the constellation of small polar-orbiting satellites providing
-measurements at a high temporal resolution. AWS originates in an initiative by SNSA, and Sweden (through SNSA) is also the largest contributor to the funding of the mission. A brief description of the relevant instruments is provided in Table~\ref{tab:specifications_instruments}.
+As introduction it is clarified that the retrievals developed here will not
+only be applicable to existing sensors, but also to upcoming satellite
+instruments like MicroWave Imager (MWI) and Arctic Weather Satellite (AWS). MWI
+will be part of the next generation of the European Organisation for the
+Exploitation of Meteorological Satellites Polar System - Second
+Generation\footnote{See further
+  \url{www.wmo-sat.info/oscar/instruments/view/mwi_metop_sg}}. AWS is an ESA
+mission and is envisaged as a constellation of small polar-orbiting satellites,
+providing measurements at a high temporal resolution\footnote{See
+  \url{www.esa.int/Applications/Observing_the_Earth/Meteorological_missions/Arctic_Weather_Satellite}}.
+AWS originates in an initiative by SNSA, and Sweden is also the largest
+contributor to the funding of the mission. A brief description of the relevant
+instruments is provided in Table~\ref{tab:specifications_instruments}.
 
-As a first step, the methodology will be applied to high-frequency channels of SSMIS. Inclusion of lower frequencies and a further extension to cross-track microwave instruments (e.g. ATMS) would be the next step. In theory, it is possible to apply the same scheme from conical scanners to cross-track scanners. However, the implementation is bit more difficult due to the strong variability of surface emissivity (hence radiances) to various incidence angles, particularly over complex surface types. Development of the scheme with ATMS can be a preparatory step towards the use of AWS measurements. 
+As a first step, the methodology will be applied to SSMIS (Special Sensor
+Microwave Imager/Sounder\footnote{\url{www.wmo-sat.info/oscar/instruments/view/ssmis}}). This is presently the only conically scanning
+microwave radiometer covering the Arctic having channels around 183\,GHz (it
+will be followed by MWI). There is a higher selection of possible cross-track
+sensors. Here ATMS (Advanced Technology Microwave Sounder\footnote{\url{www.wmo-sat.info/oscar/instruments/view/atms}}) will be the primary
+choice as it has 5 channels around 183\,GHz (as both MWI and AWS will have).
+The retrieval scheme is basically identical between conical scanners and
+cross-track scanners, but the later case requires more simulations to create
+the retrieval database due to the varying incidence angle for this scanning approach. 
 
 \begin{table}[t]
 	\centering
 	\caption{Specifications of the satellite instruments most relevant to this
-      study.}
+      study.\intodo{Finish table}}
 	\label{tab:specifications_instruments}	
 	\begin{tabular}{lccc}
 
@@ -193,47 +205,84 @@ As a first step, the methodology will be applied to high-frequency channels of S
 \subsubsection{HARMONIE-AROME}
 %
 \label{sec:harmonie}
-HARMONIE-AROME numerical weather prediction (NWP) system is the first regional reanalysis focussing on the Arctic regions. It is one of the canonical model configurations of the ALADIN-HIRLAM NWP system (\url{http://www.umr-cnrm.fr/aladin/}) which focuses on short-range meso-scale forecasts. Details about the model microphysics, parametrizations and other configuration choices can be found in \citet{bengtsson:2017:harmo}. The reanalyses cover the period from 1997 to 2021 and are available at 2.5\,km horizontal resolution, thus providing more local detailing than ERA5 global reanalysis products.  
+The HARMONIE-AROME numerical weather prediction (NWP) system is the first
+regional reanalysis focussing on the Arctic regions\todo{HA not only used for
+  this}. It is one of the canonical model configurations of the ALADIN-HIRLAM
+NWP system (\url{http://www.umr-cnrm.fr/aladin/}) which focuses on short-range
+meso-scale forecasts. Details about the model microphysics, parametrizations
+and other configuration choices can be found in \citet{bengtsson:2017:harmo}.
+The reanalyses cover the period from 1997 to 2021 and are available at 2.5\,km
+horizontal resolution, thus providing more local detailing than ERA5 global
+reanalysis products. \intodo{Comment that only two regions are covered but
+  that's fine}
  
 \subsubsection{QRNN}
 %
 \label{sec:qrnn}
 
-Quantile Regression Neural Network (QRNN), the ML approach to be applied, is introduced by us and operates in a Bayesian manner. It can be seen as a ML version of Bayesian Monte Carlo integration (BMCI) to solve ill-posed problems. QRNN predicts the posterior distribution over the chosen quantiles and provides robust case-specific error estimates. That is, uncertainty is assigned to each individual retrieval. A detailed description of QRNN can be found in \citet{pfreundschuh:aneur:18}. 
+Quantile Regression Neural Network (QRNN, \citet{pfreundschuh:aneur:18}), the
+ML approach to be applied operates in a Bayesian manner. It can be seen as a ML
+version of Bayesian Monte Carlo integration (BMCI) to solve ill-posed problems.
+QRNN predicts the posterior distribution over the chosen quantiles and provides
+robust case-specific error estimates. That is, uncertainty is assigned to each
+individual retrieval. 
 
 %The neural network (NN) training is a process of learning to predict the outputs {$y_i$} from inputs {$x_i$} through a series of learnable transformations. In traditional NN techniques, the output is a point estimate of the target variable. However, QRNN is trained to minimise the mean of the quantile loss function and predict chosen quantiles of its Bayesian a posterior distribution.   
 
-In all the applications QRNN has been tested so far, it has outperformed the existing approaches. This includes a very recent study by Inderpreet Kaur for predicting noise-free clear-sky radiances from microwave humidity channels \citep{kaur:2021:canma}. Previously, \citet{pfreundschuh:aneur:18} had shown the advantage of QRNN in predicting cloud top pressure from observations by the Moderate Resolution Imaging Spectroradiometer (MODIS). Recent studies with QRNN also include working with Goddard profiling algorithm (GPROF) team to replace BMCI with QRNN for GPROF retrievals (manuscript in preparation).
+In all the applications QRNN has been tested so far, it has outperformed the
+existing approaches. This includes a very recent study by Inderpreet Kaur for
+predicting noise-free clear-sky radiances from microwave humidity channels
+\citep{kaur:2021:canma}. Previously, \citet{pfreundschuh:aneur:18} had shown
+the advantage of QRNN in predicting cloud top pressure from observations by the
+Moderate Resolution Imaging Spectroradiometer (MODIS). Recent studies with QRNN
+also include working with Goddard profiling algorithm (GPROF) team to replace
+BMCI with QRNN in the GPROF retrievals (manuscript in
+preparation)\todo{reference for GPROF needed}.
 
 
 \subsubsection{ARTS}
 \label{sec:arts}
 % 
-The backbone of our work is building the database with simulated TB using ARTS
-(Atmospheric Radiative Transfer Simulator, \url{www.radiativetransfer.org}).
-ARTS has some unique features, but in this context, it is rather the
-completeness and flexibility of ARTS that is helpful. There is now a second
-cornerstone of the ARTS infrastructure, the associated database of single
-scattering properties \citep{eriksson:agene:18}. The main part contains data
-for 36 particle ``habits'' assuming totally random orientation (TRO). Already
-this makes the database the most comprehensive one. Some data for azimuthally
-random orientation (ARO) are also at hand
+The backbone of the work is to genarate the radiances of the database. These
+are simulated by ARTS (Atmospheric Radiative Transfer Simulator,
+\citet{eriksson:arts2:11}). ARTS has some unique features, but in this context,
+it is rather the completeness and flexibility of ARTS that is helpful. For
+example, it includes several tools for calculating the surface emissivity
+(FASTEM, TESSEM and TELSEM, SMRT will be added) and can retrieve the same
+emissivity by 1DVAR retrievals. To simulate full radiance scenes is
+straighforward as ARTS can operate in 3D with full description of antenna
+patterns \citep{duncan:anexp:19}.
+
+There is now a second cornerstone of the ARTS infrastructure, the associated
+database of single scattering properties \citep{eriksson:agene:18}. The main
+part contains data for 36 particle ``habits'' assuming totally random
+orientation (TRO). Already this makes the database the most comprehensive one.
+Some data for azimuthally random orientation (ARO) are also at hand
 \citep{brath:micro:20,ekelund:micro:20}. In principle, more ARO data of ice
 hydrometeors are needed, but in \citet{baralakas:intro:21} we show that the ARO
-case can be fairly well approximated by scaling TRO data. In an ongoing master
-thesis project data for melting particles are being generated, and this then
-fills the main remaining gap in the database.
+case can be fairly well approximated by scaling TRO data.\todo{The database
+  part can be shorter if necessary}
+
 
 \subsection{Preliminary results}
 %
-This project will build upon the ongoing efforts, hence we briefly summarize the preparatory steps we have undertaken to demonstrate the feasibility of the project using high-frequency measurements, from conical scanners.
+This project will build upon the ongoing efforts, hence we briefly summarize
+the preparatory steps we have undertaken to demonstrate the feasibility of the
+project.
 
 \subsubsection{Radiative transfer simulations}
 %
 \label{sec:radiative_transfer}
-Towards creating as realistic and comprehensive retrieval databases as much as possible, we prepare for the complex radiative transfer calculations using the Global Precipitation Measurement (GPM) Microwave Imager (GMI) frequencies and polarisations. The GMI measurements for frequencies around 166\,GHz and 183\,GHz are simulated using Cloudsat radar measurements. A dbZ based system as described by \citet{ekelund:using:20} is followed and the onion peeling retrieval method is used to invert CloudSat reflectivities to ice water content. The emissivities over land and water are taken from climatologies, however for snow and sea-ice surface types an empirical snow and ice emissivity model is used.
+Towards creating realistic and comprehensive retrieval databases, we prepare by
+using the Global Precipitation Measurement (GPM) Microwave Imager (GMI). The
+GMI measurements at 166\,GHz and 183\,GHz are simulated using Cloudsat radar
+measurements \intodo{and ERA5}. A dbZ based system as described by \citet{ekelund:using:20} is
+followed and the onion peeling \intodo{which one?} retrieval method is used to invert CloudSat
+reflectivities to ice water content. The emissivities over land and water are
+taken from climatologies, however for snow and sea-ice surface types an
+empirical snow and ice emissivity model is used.
 
-\subsubsection*{Snow emissivity model}
+\subsubsection*{Snow emissivity model (and particle)}
 %
 We use the existing modelling and experimental studies \citep{harlow:2009:milli, harlow:2012:tundr,hewison:2002:airbo} to define the valid ranges of emissivity variability for frequencies in 160-183\,GHz band. If $\epsilon_{193}, \epsilon_{159}$ represents the emissivities for 193\,GHz and 159\,GHz respectively, then
 \begin{align}
@@ -272,8 +321,23 @@ where, $U(a, b)$ represents a uniform distribution between a and b.
 	\label{fig:histogram_2d}
 \end{figure*}
 
-In order to verify that the data in the training database covers the actual measurement space, the measured and simulated radiances from GMI are compared statistically. Figure~\ref{fig:histogram_2d} shows the polarisation difference (PD) and radiance histograms from 166 GHz for different surface types. The PD is defined as the difference between vertical and horizontal polarisations. The effect of including particle orientation using the scheme of \citet{baralakas:intro:21} indeed looks promising to mimic the effect of hydrometeor interaction.
-Over both sea-ice and snow, the PDs are mostly positive as a consequence of hydrometeor scattering, and the negative PDs arise from noise in clear-sky measurements. For all surface types, the variability of our simulations is higher than the GMI measurements, indicating that the simulations can cover all possible range of conditions. This is an important result as we cannot expect the retrieval to provide a complete picture if the training database covers the measurement range partially.
+In order to verify that the data in the training database covers the actual
+measurement space, the measured and simulated radiances from GMI are compared
+statistically. Figure~\ref{fig:histogram_2d} shows the polarisation difference
+(PD) and radiance histograms from 166 GHz for different surface types. The PD
+is defined as the difference between vertical and horizontal polarisations. The
+effect of including particle orientation using the scheme of
+\citet{baralakas:intro:21} indeed looks promising to mimic the effect of
+hydrometeor interaction. Over both sea-ice and snow, the PDs are mostly
+positive as a consequence of hydrometeor scattering, and the negative PDs arise
+from noise in clear-sky measurements. For all surface types, the variability of
+our simulations is higher than the GMI measurements, indicating that the
+simulations can cover all possible range of conditions. This is an important
+result as we cannot expect the retrieval to provide a complete picture if the
+training database only covers the measurement range partially.
+\intodo{PD must be clarified and motivated better. Either more or less
+  discussion of the results. Let us discuss.}
+
 
 \subsubsection{Retrievals}
 \label{sec:preliminary_results}
@@ -290,10 +354,25 @@ Over both sea-ice and snow, the PDs are mostly positive as a consequence of hydr
 \end{figure*}
 
 
-The QRNN algorithm described in sect.~\ref{sec:qrnn} is applied to measured radiances from GMI frequencies: 166 V\,GHz, 166 H\,GHz, 183$\pm$3\,GHz and 183$\pm$7\,GHz, to retrieve the corresponding WVPs. Two-metre temperature, latitude and surface type are also provided as auxiliary information. No data filtering is applied. In order to compare the retrieved WVP with reanalyses from ERA5, the retrievals are re-gridded to 2.5$^{\circ}$ resolution. A comparison of the near global maps (between 45$^\circ$ - 65$^\circ$) of monthly means from both datasets is displayed in fig~\ref{fig:WVP_retrievals}. The two spatial distributions largely agree with each other except for few high WVP values in the southern hemisphere. The correlation between the two datasets is 0.97. Over the southern hemisphere, the saturation of high-frequency channels over high humidity regions could be responsible for the inaccurate retrievals.
+The QRNN algorithm described in sect.~\ref{sec:qrnn} is applied to measured
+radiances from GMI frequencies: 166 V\,GHz, 166 H\,GHz, 183$\pm$3\,GHz and
+183$\pm$7\,GHz, to retrieve the corresponding WVPs. Two-metre temperature,
+latitude and surface type are also provided as auxiliary information. No data
+filtering is applied. In order to compare the retrieved WVP with reanalyses
+from ERA5, the retrievals are re-gridded to 2.5$^{\circ}$ resolution. A
+comparison of the near global maps (between 45$^\circ$ - 65$^\circ$) of monthly
+means from both datasets is displayed in fig~\ref{fig:WVP_retrievals}. The two
+spatial distributions largely agree with each other except for few high WVP
+values in the southern hemisphere. The correlation between the two datasets is
+0.97. Over the southern hemisphere\intodo{Problem all over SH?}, the saturation
+of high-frequency channels over high humidity regions could be responsible for
+the inaccurate retrievals. \intodo{Expalin somewhere why only 45-65 deg}
 
-\subsubsection{Sea-ice classification using SARS}
+
+\subsubsection{Sea-ice classification using SAR}
 \todo{from Leif}
+
+
 
 \subsection{Work Flow}
 \label{sec:wp}
@@ -330,9 +409,27 @@ The WP output will be batches of simulated radiances.
 \subsubsection*{WP 4 : Retrieval setup}
 %
 \label{sec:setup}
-The use of the retrieval database will be made without introducing any re-mapping between the different footprint sizes. All footprints inside a region would be used as input, and the database generation will mimic this. This approach will make much better use of the spatial information provided by the overlap of instrument footprints. The target resolution would not be compromised and retrievals can be made at the highest possible resolution, while preserving the information at their native resolution. This has been demonstrated using 2DVAR in \citet{duncan:onthe:19}. But here we shall aim to achieve the same purpose by using QRNN. In fact, by doing this by a database (and not 2DVAR) we are not restricted to describe spatial correlations by covariance matrices and the QRNN version should be even more advantageous.
+The use of the retrieval database will be made without introducing any
+re-mapping between the different footprint sizes. All footprints inside a
+region would be used as input, and the database generation will mimic this.
+This approach will make much better use of the spatial information provided by
+the overlap of instrument footprints. The target resolution would not be
+compromised and retrievals can be made at the highest possible resolution,
+while preserving the information at their native resolution. This has been
+demonstrated using 2DVAR in \citet{duncan:onthe:19}. But here we shall aim to
+achieve the same purpose by using QRNN. In fact, by doing this by a database
+(and not 2DVAR) we are not restricted to describe spatial correlations by
+covariance matrices and the QRNN version should be even more advantageous.
 
-The package for QRNN is already available as a part of the Typhon software package \citep{lemke:2020:typhon}. The implementation of the retrieval algorithm shall be relatively straightforward but the challenge would be to find the best performing neural-network architecture so as to achieve the best model performance. Besides, it would also be important to test the sensitivity of various auxiliary data to the retrieval performance. In order to run the retrievals, we shall make use of the Chalmers central computational cluster (C3SE).
+The package for QRNN is already available as a part of the Typhon software
+package \citep{lemke:2020:typhon}\intodo{This is added as an article in
+  references.bib. Anyhow, is really Simon's latest version in Typhon?}. The
+implementation of the retrieval algorithm shall be relatively straightforward
+but the challenge would be to find the best performing neural-network
+architecture so as to achieve the best model performance. Besides, it would
+also be important to test the sensitivity of various auxiliary data to the
+retrieval performance. In order to run the retrievals, we shall make use of the
+Chalmers central computational cluster (C3SE).
 
 
 \subsubsection*{WP 5 : Retrievals}
