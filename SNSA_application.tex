@@ -9,6 +9,7 @@
 \usepackage{subcaption}
 \usepackage{multirow}
 \usepackage{amsmath}
+\usepackage{booktabs}
 \captionsetup[figure]{font=normalsize,labelfont=normalsize}
 
 %
@@ -172,25 +173,49 @@ microwave radiometer covering the Arctic having channels around 183\,GHz (it
 will be followed by MWI). There is a higher selection of possible cross-track sensors. Here ATMS (Advanced Technology Microwave Sounder\footnote{\url{www.wmo-sat.info/oscar/instruments/view/atms}}) will be the primary choice as it has 5 channels around 183\,GHz (as both MWI and AWS will have). The retrieval scheme is basically identical between conical scanners and cross-track scanners, but the latter will require more simulations (for the retrieval database) to cover the varying incidence angle for this scanning approach.
 
 \begin{table}[t]
+	\footnotesize
 	\centering
-	\caption{Specifications of the satellite instruments most relevant to this
-      study.\intodo{Finish table}}
+	\caption{Brief specifications of the conical scanners (left) and cross-track scanners (right), relevant to this study.}
 	\label{tab:specifications_instruments}	
-	\begin{tabular}{lccc}
-
-		Instruments &Type& Frequency range 	& Resolution  \\
-					&     & 	[GHz]				& [km]			\\
-		\hline			
-		SSMIS		&conical	&19\,GHz to 183\,GHz& \\
-		ATMS        &cross-track&23\,GHz to 183\,GHz &\\
-		\hline
-		MWI         &conical     &18\,GHz to 183\,GHz&\\
-		AWS         &cross-track &50\,GHz to 325\,GHz&\\ 
-		
-		\hline			
-
+	\parbox{.45\linewidth}{
+	\centering
+	\begin{tabular}{crr}
+	\toprule
+		Instrument & Frequency range 	& Footprint size \\
+					& [GHz]             & [km]       \\
+		\midrule			
+		SSMIS	   &19 - 22		& 42.4$\times$70.1	\\
+				   &37          &27.5$\times$44.2  \\
+				   &50 - 63       & 17.5$\times$25.8 \\
+				   &91 - 183    &  13.1$\times$14.4\\
+		\midrule
+		MWI 	   &18-23 		&50\\
+				   &31-53 		& 30\\
+				   & 89-183 	& 10\\	
+		\bottomrule		
 	\end{tabular}
+	}
+\hfill
+\parbox{.45\linewidth}{
+	\centering
+	\begin{tabular}{crr}
+	\toprule
+	Instrument & Frequency range 	& Footprint size \\
+	& [GHz]             & [km]       \\
+	\midrule			
+	ATMS	    &23 - 32		& 75	\\
+				&50 - 90        &32  \\
+				&165-183        & 16 \\
+	\midrule
+	AWS 	   &50 - 57 		& $\le$40\\
+			   &89 				& $\le$20\\
+			   & 165 - 325 		& $\le$10\\	
+	\bottomrule		
+\end{tabular}
+}
 \end{table}
+
+
 
 \subsubsection{HARMONIE-AROME}
 %
@@ -245,7 +270,7 @@ Some data for azimuthally random orientation (ARO) are also at hand
 
 \subsection{Preliminary results}
 %
-This project will build upon the ongoing efforts, hence we briefly summarize the preparatory steps we have undertaken to demonstrate the feasibility of the project. The initial steps are based on the  observations from the Global Precipitation Measurement (GPM) Microwave Imager (GMI). GMI is non-sunsynchronous conical scanning microwave radiometer providing coverage upto 65$^{\circ}$. We select data from January and only high latitudes (45$^{\circ}$ - 65$^{\circ}$, in both hemispheres) so that sea-ice and snow surface types can be considered. 
+This project will build upon the ongoing efforts, hence we briefly summarize the preparatory steps we have undertaken to demonstrate the feasibility of the project. The initial steps are based on the  observations from the Global Precipitation Measurement (GPM) Microwave Imager (GMI). GMI is non-sunsynchronous conical scanning microwave radiometer providing coverage upto 65$^{\circ}$. We select data from January and only high latitudes (45$^{\circ}$ - 65$^{\circ}$ in both hemispheres), so that both sea-ice and snow surface types can be considered. 
 
 \subsubsection{Radiative transfer simulations}
 %
@@ -272,19 +297,19 @@ where, $N(\mu, \sigma^{2})$ represents the standard normal distribution with mea
 	\centering
 	\begin{subfigure}{.24\textwidth}
 		\caption{Land}
-		\includegraphics[height =35mm]{Figures/hist2d_gmi_45-60_land.png}
+		\includegraphics[height=39mm, width = 39mm]{Figures/hist2d_gmi_45-65_land.pdf}
 	\end{subfigure}
 	\begin{subfigure}{.24\textwidth}
 		\caption{Water}
-		\includegraphics[height = 35mm]{Figures/hist2d_gmi_45-60_sea.png}
+		\includegraphics[height = 39mm, width = 39mm]{Figures/hist2d_gmi_45-60_sea.pdf}
 	\end{subfigure}
 	\begin{subfigure}{.24\textwidth}
 	\caption{Snow}
-	\includegraphics[height = 35mm]{Figures/hist2d_gmi_45-60_snow.png}
+	\includegraphics[height = 39mm, width = 39mm]{Figures/hist2d_gmi_45-60_snow.pdf}
 \end{subfigure}
 \begin{subfigure}{.24\textwidth}
 	\caption{ Sea-ice}
-	\includegraphics[height = 35mm]{Figures/hist2d_gmi_highlat_sea-ice.png}
+	\includegraphics[height = 39mm, width = 39mm]{Figures/hist2d_gmi_highlat_sea-ice.pdf}
 \end{subfigure}
 	\caption{Two-dimensional PDFs for the TB and PD for GMI 166\,GHz frequency. Figures (a)-(d) are for land, water, snow and sea-ice surface types respectively. The data is from 45$^\circ$ - 65$^\circ$ latitude bands in both hemispheres. The simulated GMI data is from Jan 2009, while GMI measurements are from Jan 2020.}
 	\label{fig:histogram_2d}
@@ -362,11 +387,7 @@ region would be used as input, and the database generation will mimic this. This
 covariance matrices and the QRNN version should be even more advantageous.
 
 The package for QRNN is already available as a part of the Typhon software
-package \citep{lemke:2020:typhon}\intodo{This is added as an article in
-  references.bib. Anyhow, is really Simon's latest version in Typhon?}. The
-implementation of the retrieval algorithm shall be relatively straightforward
-but the challenge would be to find the best performing neural-network
-architecture so as to achieve the best model performance. Besides, it would also be important to test the sensitivity of various auxiliary data to the retrieval performance. In order to run the retrievals, we shall make use of the Chalmers central computational cluster (C3SE).
+package \citep{lemke:2020:typhon}. The implementation of the retrieval algorithm shall be relatively straightforward but the challenge would be to find the best performing neural-network architecture so as to achieve the best model performance. Besides, it would also be important to test the sensitivity of various auxiliary data to the retrieval performance. In order to run the retrievals, we shall make use of the Chalmers central computational cluster (C3SE).
 
 
 \subsubsection*{WP 5 : Retrievals}
@@ -397,21 +418,22 @@ Secondary products which will be considered include snowfall and sea-ice concent
 
 The high-resolution emissivity retrievals can be additionally post-processed to generate estimates of sea-ice concentration. The post-processing simply involves matching the 1D-VAR emissivity estimates over sea-ice to a pre-computed catalog of mean emissivity spectra. %In fact, validation of the SIC against other available products like MiRS (Microwave Integrated Retrieval System) based operational cyrogenic products can also serve as an indirect validation of the emissivity retrievals.
 
-\subsection{Impact and social benefits}
-%
-\label{sec:impact}
-
-Arctic amplification is garnering rapid interest, thus increasing the need to provide better understanding of weather, environmental and climate processes in the polar regions. Towards improving our ability at making reliable forecasts efforts, amplifying the usage of satellite derived polar products in numerical models is crucial. In other ways, it also has implications on mid-latitude weather forecasts. We propose that the intended standalone retrievals of Arctic water shall improve the ingestion of satellite data than it is being done now. Additionally, high resolution emissivity information will also be an important result which shall benefit the assimilation of microwave observations over polar regions. This aspect will be covered in association and feedback from numerical modelling community at SMHI and ECMWF (see sect.~\ref{sec:evaluation}).
-
-As a society, the anthropogenic climate change over poles has economic and political implications. Increasing economic activity through Arctic navigation also requires substantial efforts to be conducted in a safe manner. Reducing uncertainties in the weather forecast being an important component. 
-
-%LWC over polar regions are major contributors to uncertainty in retrievals of sea ice concentration by passive microwave radiometry.
  
 \subsection{Risk Assessment}
 %
 \label{sec:risk}
 All activities planned in this project are a direct continuation of ongoing work and the level of risk in the basic work plan must be judged as low. The calculation of emissivity spectra over sea-ice and heterogeneous regions is often considered difficult and neglected, however with use high resolution SAR data (as planned) the risk of contamination and unwanted errors becomes low. There is some speculation around the usage of low frequencies like 22\,GHz and 37\,GHz considering their large footprint size, but their inclusion also remains low on priority. 
 
+\section{Impact and social benefits}
+%
+\label{sec:impact}
+Arctic amplification is garnering rapid interest, thus to improve the understanding of weather, environmental and climate processes in the polar regions, amplifying the usage of satellite derived polar products in numerical models is crucial. . We propose that the intended standalone retrievals of Arctic water shall improve the ingestion of satellite data than it is being done now. Additionally, high resolution emissivity information will also be an important result which shall benefit the assimilation of microwave observations over polar regions. This aspect will be covered in association and feedback from numerical modelling community at SMHI and ECMWF (see sect.~\ref{sec:evaluation}).
+
+
+In other ways, it also has implications on mid-latitude weather forecasts
+As a society, the anthropogenic climate change over poles has economic and political implications. Increasing economic activity through Arctic navigation also requires substantial efforts to be conducted in a safe manner. Reducing uncertainties in the weather forecast being an important component. 
+
+%LWC over polar regions are major contributors to uncertainty in retrievals of sea ice concentration by passive microwave radiometry.
 \section{Collaborations}
 %
 The use to retrieval database in NWP would require close cooperation with SMHI and ECMWF. Patrick Eriksson has been one of the leading contributors to the preparation of AWS and would also be involved in a Nordic weather study with SMHI around AWS. Furthermore, the contact with ECMWF is strengthened by the fact that Patrick Eriksson has been appointed ECMWF  fellow ({\footnotesize \url{www.ecmwf.int/en/about/media-centre/news/2020/ecmwf-appoints-seven-new-fellows-scientific-collaboration}}). Another contact at ECMWF is through David Duncan. He contributed to the recent study by Inderpreet Kaur, and the contact will be likely continued. 
