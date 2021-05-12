@@ -239,7 +239,6 @@ The main objective of this study is to provide physical, stand-alone, water retr
 \end{itemize}
 
 
-\newpage
 \subsection{Data and tools}
 % 
 \subsubsection{Satellite instruments}
@@ -352,7 +351,7 @@ There is now a second cornerstone of the ARTS infrastructure, the associated
 database of single scattering properties \citep{eriksson:agene:18}. The main part contains data for 36 particle ``habits'' assuming totally random
 orientation (TRO). This makes the database the most comprehensive one.
 Some data for azimuthally random orientation (ARO) are also at hand
-\citep{brath:micro:20,ekelund:micro:20}. In principle, more ARO data of ice hydrometeors are needed, but in \citet{baralakas:intro:21} we show that the ARO case can be fairly well approximated by scaling the TRO data.
+\citep{brath:micro:20,ekelund:micro:20}. In principle, more ARO data of ice hydrometeors are needed, but in \citet{barlakas:intro:21} we show that the ARO case can be fairly well approximated by scaling the TRO data.
 
 \subsection{Preliminary results}
 %
@@ -361,7 +360,7 @@ This project will build upon the ongoing efforts, hence we briefly summarize the
 \subsubsection{Radiative transfer simulations}
 %
 \label{sec:radiative_transfer}
-To simulate GMI measurements at 166\,GHz and 183\,GHz, a dbZ based system described by \citet{ekelund:using:20} is followed. As an input, radar reflectivities are taken from Cloudsat and ERA5 reanalyses are used for atmospheric parameters. The particles are assumed to be ARO, and the approximation from \citet{baralakas:intro:21} is extended to include various scaling factors approximating different polarisations. The emissivities over land and water are taken from climatologies, however for snow and sea-ice surface types (identified using ERA data) an empirical snow and ice emissivity model is used.  
+To simulate GMI measurements at 166\,GHz and 183\,GHz, a dbZ based system described by \citet{ekelund:using:20} is followed. As an input, radar reflectivities are taken from Cloudsat and ERA5 reanalyses are used for atmospheric parameters. The particles are assumed to be ARO, and the approximation from \citet{barlakas:intro:21} is extended to include various scaling factors approximating different polarisations. The emissivities over land and water are taken from climatologies, however for snow and sea-ice surface types (identified using ERA data) an empirical snow and ice emissivity model is used.  
 
 We use the existing modelling and experimental studies \citep{harlow:2009:milli, hewison:2002:airbo} to define the valid ranges of emissivity variability for frequencies in 160-183\,GHz band. If $\epsilon_{193}, \epsilon_{159}$ represents the emissivities for 193\,GHz and 159\,GHz respectively, then
 \begin{align}
@@ -504,29 +503,97 @@ The high-resolution emissivity retrievals can be additionally post-processed to 
 \subsection{Risk Assessment}
 %
 \label{sec:risk}
-All activities planned in this project are a direct continuation of ongoing work and the level of risk in the basic work plan must be judged as low. The calculation of emissivity spectra over sea-ice and heterogeneous regions is often considered difficult and neglected, however with use high resolution SAR data (as planned) the risk of contamination and unwanted errors becomes low. There is some speculation around the usage of low frequencies like 22\,GHz and 37\,GHz considering their large footprint size, but their inclusion also remains low on priority. 
+All activities planned in this project are a direct continuation of ongoing
+work and the level of risk in the basic work plan must be judged as low. The
+calculation of emissivity spectra over sea-ice and heterogeneous regions is
+often considered difficult and neglected, however with use high resolution SAR
+data (as planned) the risk of contamination and unwanted errors becomes low.
+Usage of low frequencies like, 22 and 37\,GHz should be seen as more
+speculative considering their large footprint size, but their inclusion has
+also low on priority.
 
 \section{Impact and social benefits}
 %
 \label{sec:impact}
 
-The sophisticated retrieval approach will take into account the contribution from surface emissivity, thus making retrievals possible in areas where previously data was either not available or was highly uncertain. The overall procedure requires a deep understanding of the physics governing the observed radiances. This knowledge can be shared with the NWP community and a significant impact of the data on weather forecasting can be expected. A more consistent database of physical standalone retrievals is important for NWP, which rely on satellite based retrievals to determine the initial atmospheric conditions. Additionally, the sea-ice emissivity estimates can be used to reduce the forward model errors arising due to surface contribution in radiative transfer. Work towards amplifying the ingestion observations in NWP will be covered in association with modelling community at SMHI and ECMWF (see sect.~\ref{sec:collaborations}). 
+As a society, understanding and improving the weather, environmental and
+climate processes in the polar regions are important to tackle the effects
+of climate change, and also improving mid-latitude weather forecasts. The
+anthropogenic climate change over poles also has economic and political
+implications, e.g.\ commercial navigational activity through the Arctic
+requires accurate weather forecasts to avoid accidents and oil spills.
 
-As a society, understanding and improving the weather, environmental and climate processes in the polar regions is important to tackle the effects climate change, and also improving mid-latitude weather forecasts. The anthropogenic climate change over poles also has economic and political implications, e.g.\, commercial navigational activity through the Arctic requires accurate weather forecasts to avoid accidents and oil spills. 
+The overall retrieval procedure requires a deep understanding of the physics
+governing the observed radiances. This knowledge can be shared with the NWP
+community and an indirect significant impact of the data on weather forecasting
+can be expected. Work towards amplifying the ingestion observations in NWP will
+be covered in association with modelling community at SMHI and ECMWF (see
+Sec.~\ref{sec:collaborations}).
+
+\newpage
+
+%A consistent database of standalone retrievals
+%is important for NWP, which rely on satellite based retrievals to determine the
+%initial atmospheric conditions. Additionally, the sea-ice emissivity estimates
+%can be used to reduce the forward model errors arising due to surface
+%contribution in radiative transfer.
+
 
 \section{Collaborations}
 %
 \label{sec:collaborations}
-The use to retrieval database in NWP would require close cooperation with SMHI and ECMWF. Patrick Eriksson has been one of the leading contributors to the preparation of AWS and would also be involved in a Nordic weather study with SMHI around AWS. Furthermore, the contact with ECMWF is strengthened by the fact that Patrick Eriksson has been appointed ECMWF  fellow ({\footnotesize \url{www.ecmwf.int/en/about/media-centre/news/2020/ecmwf-appoints-seven-new-fellows-scientific-collaboration}}). Another contact at ECMWF is through David Duncan. He contributed to the recent study by Inderpreet Kaur, and the contact will be likely continued. 
+The retrievals will be made publicly available and we will actively search
+for cooperation inside the climate modelling community to ensure that the 
+data will be applied for verification of models and similar activities. \intodo{* Ask
+Luisa for names to mention?}
+
+The experience obtained in the project can be transferred to the NWP community
+by existing contacts. Patrick Eriksson has an established collaboration with
+SMHI (around ICI and QRNN), and AWS should broaden the contact. For example,
+discussions are ongoing on how Chalmers can contribute to the upcoming
+``Nordic AWS study''. Further, Patrick and Leif Eriksson are co-applicants in a
+proposal from SMHI, also submitted to SNSA 2021-R. The title of that proposal
+is ``Consistent Air-Ice-Sea Data Assimilation of Satellite Observations`` and
+there are high similarities between the projects.
+
+The EUMETSAT fellowship hold by V.\ Barlakas has established a direct
+collaboration with ECMWF \citep{barlakas:intro:21}. Furthermore, the interest
+in the research performed at Chalmers from ECMWF has resulted in
+that Patrick
+Eriksson has been appointed ECMWF fellow\footnote{See 
+  \url{www.ecmwf.int/en/about/media-centre/news/2020/ecmwf-appoints-seven-new-fellows-scientific-collaboration}}.
+Another contact at ECMWF is through David Duncan (former post doc at Chalmers).
+He contributed to the recent study by Inderpreet Kaur, and this contact will be
+maintained.
+
+
 
 \section{Staff situation}
 %
 \label{sec:staff}
-Inderpreet Kaur started as a postdoctoral researcher in the division in March 2020. She is presently working with retrieval of atmospheric ice using microwave instruments. She shall spend 80\,\% of her time towards the project. Patrick Eriksson is a Professor and has main expertise in atmospheric radiative transfer and retrieval methods. He will spend 5\% of his time on this project and contribute to all WPs. Luisa Ickes is an Assistant Professor, and has special research interest in the Arctic region and clouds in general. She will provide expertise in cloud physics, both when generating training data and evaluating retrievals (WPs 5, 6). Leif Eriksson is an Associate Professor and his research aims at developing methods to make land and ocean measurements with radar data. In this project, his expertise is sought on the use of SAR data in the project. He will mainly contribute to WP 1 and WP 7. 
+Inderpreet Kaur started as a postdoctoral researcher in the division in March
+2020. She is presently working with retrieval of atmospheric ice hydrometeors
+using microwave instruments. She shall spend 80\,\% of her time towards the
+project. Patrick Eriksson will contribute to all WPs and act as overall project
+leader. Luisa Ickes is an Assistant Professor, and has the Arctic region as her
+special research interest. She will provide expertise in cloud physics and the
+conditions in the Arctic region in general, both when generating training data
+and evaluating retrievals (WPs 1, 5 and 6). Leif Eriksson is an Associate
+Professor and his research aims at developing methods to observe land and ocean
+properties with radar data. In this project, his expertise is sought on the use
+of SAR data in the project. He will mainly contribute to WP 1 and WP 7. The
+last three persons will spend at least 5\,\% of their time on the project.
+During 2022 this level be 10\,\% for Leif Eriksson. See further Cost
+Specification enclosure.
+
+
 
 \section{Satellite data}
 %
-All satellite data of concern, in this project, is publicly available. SSMIS data will be downloaded from \url{ https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc:C00810}, while ATMS data is available at \url{ftp://ftp-npp.bou.class.noaa.gov/}.
+All satellite data of concern in this project are publicly available. SSMIS
+data can be obtained at
+\url{www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc:C00810},
+and\\ATMS data are available at \url{ftp-npp.bou.class.noaa.gov/}.
 
 {\footnotesize
 	\bibliography{j_abbr,refs_pe1,references}
