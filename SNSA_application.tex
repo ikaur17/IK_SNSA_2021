@@ -239,7 +239,6 @@ The main objective of this study is to provide physical, stand-alone, water retr
 \end{itemize}
 
 
-\newpage
 \subsection{Data and tools}
 % 
 \subsubsection{Satellite instruments}
@@ -352,7 +351,7 @@ There is now a second cornerstone of the ARTS infrastructure, the associated
 database of single scattering properties \citep{eriksson:agene:18}. The main part contains data for 36 particle ``habits'' assuming totally random
 orientation (TRO). This makes the database the most comprehensive one.
 Some data for azimuthally random orientation (ARO) are also at hand
-\citep{brath:micro:20,ekelund:micro:20}. In principle, more ARO data of ice hydrometeors are needed, but in \citet{barlakas:intro:21} we show that the ARO case can be fairly well approximated by scaling the TRO data.
+\citep{brath:micro:20}. In principle, more ARO data of ice hydrometeors are needed, but in \citet{barlakas:intro:21} we show that the ARO case can be fairly well approximated by scaling the TRO data.
 
 \subsection{Preliminary results}
 %
@@ -397,11 +396,11 @@ where, $N(\mu, \sigma^{2})$ represents the standard normal distribution with mea
 	\caption{ Sea-ice}
 	\includegraphics[height = 39mm, width = 39mm]{Figures/hist2d_gmi_highlat_sea-ice.pdf}
 \end{subfigure}
-	\caption{Two-dimensional PDFs for the TB and PD for GMI 166\,GHz frequency. Figures (a)-(d) are for land, water, snow and sea-ice surface types respectively. The data is from 45$^\circ$ - 65$^\circ$ latitude bands in both hemispheres. The simulated GMI data is from Jan 2009, while GMI measurements are from Jan 2020. As an example, the contribution from cloudy/clear-sky scenarios is annotated in (b) }
+	\caption{Two-dimensional PDFs for the TB and PD for GMI 166\,GHz frequency. Figures (a)-(d) are for land, water, snow and sea-ice surface types respectively. The data is from 45$^\circ$ - 65$^\circ$ latitude bands in both hemispheres. The simulated GMI data is from Jan 2009, while GMI measurements are from Jan 2020. As an example, the contribution from surface, cloudy and clear-sky scenarios is annotated in (c) }
 	\label{fig:histogram_2d}
 \end{figure*}
 
-The training database is the set of data on which the ML algorithm trains. It must represent the actual measurement space, otherwise, the retrievals associated with poorly represented cases would be inaccurate. Before starting with the retrievals, it is crucial to verify the distribution of the training database. Figure~\ref{fig:histogram_2d} shows the polarisation difference (PD) and radiance histograms from 166 GHz, for both simulated and measured data. The PD is defined as the difference between vertical and horizontal polarisations. Such histograms are useful to analyse the microphysical properties of hydrometeors, for example, see fig.~\ref{fig:WVP_retrievals}(b). A detailed description is omitted due to limited space. Nonetheless, we use these plots to analyse the variability of the simulations. For all the surface types shown, the histogram contours for both datasets overlap to a large extent. Being a statistical comparison, a perfect match between the two is not required. This is an important result as we cannot expect the retrieval to provide a complete picture unless the training database mimics the realistic distributions quite closely.
+The training database is the set of data on which the ML algorithm trains. It must represent the actual measurement space, otherwise, the retrievals associated with poorly represented cases would be inaccurate. Before starting with the retrievals, it is crucial to verify the distribution of the training database. Figure~\ref{fig:histogram_2d} shows the polarisation difference (PD) and radiance histograms from 166 GHz, for both simulated and measured data. The PD is defined as the difference between vertical and horizontal polarisations. Such histograms are useful to analyse the microphysical properties of hydrometeors, for example, see Fig.~\ref{fig:WVP_retrievals}(c). A detailed description is omitted due to limited space. Nonetheless, we use these plots to analyse the variability of the simulations. For all the surface types shown, the histogram contours for both datasets overlap to a large extent. Being a statistical comparison, a perfect match between the two is not required. This is an important result as we cannot expect the retrieval to provide a complete picture unless the training database mimics the realistic distributions quite closely.
 
 
 \subsubsection{Retrievals}
@@ -418,7 +417,7 @@ The training database is the set of data on which the ML algorithm trains. It mu
 	\label{fig:WVP_retrievals}
 \end{figure*}
 
-The QRNN algorithm (see sect.~\ref{sec:qrnn}) is trained with radiances from simulated GMI data for the frequencies: 166 V\,GHz, 166 H\,GHz, 183$\pm$3\,GHz and 183$\pm$7\,GHz, to retrieve the corresponding WVPs. Two-metre temperature,latitude and surface type are also provided as auxiliary information. The trained net is then used to retrieve the WVP using actual GMI measurements. A comparison of monthly means of the  retrieved WVP (re-gridded at 2.5$^{\circ}$ resolution) and ERA5 reanalyses is shown in fig.~\ref{fig:WVP_retrievals}. The spatial distributions of both datasets largely agree with each other, except for few high WVP values around 45$^{\circ}$S. The presence of such erroneous cases is not surprising, and they likely occur due to the saturation of high frequency channels in regions with high humidity. In spite of few outliers, the correlation between the two datasets is 0.97.
+The QRNN algorithm (see Sect.~\ref{sec:qrnn}) is trained with radiances from simulated GMI data for the frequencies: 166 V\,GHz, 166 H\,GHz, 183$\pm$3\,GHz and 183$\pm$7\,GHz, to retrieve the corresponding WVPs. Two-metre temperature,latitude and surface type are also provided as auxiliary information. The trained net is then used to retrieve the WVP using actual GMI measurements. A comparison of monthly means of the  retrieved WVP (re-gridded at 2.5$^{\circ}$ resolution) and ERA5 reanalyses is shown in Fig.~\ref{fig:WVP_retrievals}. The spatial distributions of both datasets largely agree with each other, except for few high WVP values around 45$^{\circ}$S. The presence of such erroneous cases is not surprising, and they likely occur due to the saturation of high frequency channels in regions with high humidity. In spite of few outliers, the correlation between the two datasets is 0.97.
 
 \subsubsection{Sea-ice classification using SAR}
 \todo{from Leif}
@@ -427,14 +426,19 @@ The QRNN algorithm (see sect.~\ref{sec:qrnn}) is trained with radiances from sim
 
 \subsection{Work Flow}
 \label{sec:wp}
-The work flow is described as work packages and the overview is displayed in fig.~\ref{fig:flowchart}. 
 
-\begin{figure*}[t]
-	\centering
-	\includegraphics[trim=140 370 40 125,clip,height = 60mm]{flowchart.pdf} 
-	\caption{Flowchart of the proposed retrieval system.}
-	\label{fig:flowchart}
-\end{figure*}
+
+The work flow is described as work packages and the overview is displayed in Fig.~\ref{fig:flowchart}. 
+
+\begin{figure}
+	\begin{minipage}[c]{0.70\textwidth}
+		\includegraphics[trim=140 450 25 125,clip,height = 50mm]{flowchart.pdf}
+	\end{minipage}\hfill
+	\begin{minipage}[c]{0.28\textwidth}
+		\caption{Flowchart of the proposed retrieval system. The green boxes represent the retrievals.
+		} \label{fig:flowchart}
+	\end{minipage}
+\end{figure}
 
 \vspace{-1ex}
 \subsubsection*{WP 1: Basic atmospheric scenarios}
@@ -447,7 +451,7 @@ The output of this work package will be a broad set of 3D atmospheric scenarios 
 \subsubsection*{WP 2 : Emissivity model}
 %
 \label{sec:emissivity}
-An important step to accomplish this task is the estimation of the surface emissivity spectra over a multitude of surface types. As a first step, we will consider using existing studies to extend the snow-emissivity model (see eqns.~\ref{eq:1}- \ref{eq:2}) to lower frequencies such as 89\,GHz and 50\,GHz. Such an empirical model will be easy to fine-tune by comparing results from pure forward modelling. However, the final aim will be to use OEM (with ARTS) on the high-resolution scenes to extract microwave emissivity spectra from the radiances. The joint retrievals of emissivity spectra over all frequencies will be made. The basic idea of joint retrievals is to find a set of emissivity estimates for all the considered frequencies that would simultaneously give radiance closest to the measurements. The synergy between such retrievals is especially useful to understand the emissivity correlations between frequencies; thus making it more viable from an assimilation perspective. The retrievals in this WP will be made assuming both specular and lambertian reflection. The differences between the two are immaterial for conical scanners, but for cross-track scanners, the realistic situations are usually combinations of the two \citep{matzler:2005:onthe}. Tests will be made to judge exactly what combination works best for various surface types and incidence angles. 
+An important step to accomplish this task is the estimation of the surface emissivity spectra over a multitude of surface types. As a first step, we will consider using existing studies to extend the snow-emissivity model (see Eqns.~\ref{eq:1}- \ref{eq:2}) to lower frequencies such as 89\,GHz and 50\,GHz. Such an empirical model will be easy to fine-tune by comparing results from pure forward modelling. However, the final aim will be to use OEM (with ARTS) on the high-resolution scenes to extract microwave emissivity spectra from the radiances. The joint retrievals of emissivity spectra over all frequencies will be made. The basic idea of joint retrievals is to find a set of emissivity estimates for all the considered frequencies that would simultaneously give radiance closest to the measurements. The synergy between such retrievals is especially useful to understand the emissivity correlations between frequencies; thus making it more viable from an assimilation perspective. The retrievals in this WP will be made assuming both specular and lambertian reflection. The differences between the two are immaterial for conical scanners, but for cross-track scanners, the realistic situations are usually combinations of the two \citep{matzler:2005:onthe}. Tests will be made to judge exactly what combination works best for various surface types and incidence angles. 
 
 The output of this work package will be measures of high resolution all-weather sea-ice emissivities at different frequencies. 
 \vspace{-1.0ex}	
@@ -476,10 +480,10 @@ package \citep{lemke:2020:typhon}. The implementation of the retrieval algorithm
 %
 \label{sec:retrievals}
 %
-In this WP, as a first step, we will extend our preliminary results for WVP (see sect.~\ref{sec:preliminary_results}) to include regions north of 65$^\circ$, using SSMIS. An extension to lower frequencies such as  89\,GHz and temperature sounding channels around 50\,GHz will be tested. Including the latter can also be beneficial to resolve the low-level cloudiness and hence improve the humidity estimates. In fact, the estimates of LWC and WVP are not completely independent. The synergies between the two quantities can be exploited to correct the estimates for each other. For LWC over sea-ice, the combination 89+150\,GHz have been suggested by \citet{laue:2007:poten} to cancel out the effect of emissivities. Inclusion of 22\,GHz and 37\,GHz to increase sensitivity to high humidity regions could also be considered, though on a lower priority. These channels are more important over open-waters than sea-ice regions. Later, the best channel combinations will also be used to estimate the humidity profiles. The ultimate goal is to include sufficient channels such that the full information content of tropospheric water is preserved. Extension to cross-track scanners will also be made. The same scheme will be applied to cross-track scanners however, the scheme will be modified to include the changes in surface emissivity with incidence angles. A larger database covering the various incidence angles will be necessary, but we will try to focus only on the central part of the swath, and avoid working with the increasing field of view towards the edge of the swath. 
+In this WP, as a first step, we will extend our preliminary results for WVP (see Sect.~\ref{sec:preliminary_results}) to include regions north of 65$^\circ$, using SSMIS. An extension to lower frequencies such as  89\,GHz and temperature sounding channels around 50\,GHz will be tested. Including the latter can also be beneficial to resolve the low-level cloudiness and hence improve the humidity estimates. In fact, the estimates of LWC and WVP are not completely independent. The synergies between the two quantities can be exploited to correct the estimates for each other. For LWC over sea-ice, the combination 89+150\,GHz have been suggested by \citet{laue:2007:poten} to cancel out the effect of emissivities. Inclusion of 22\,GHz and 37\,GHz to increase sensitivity to high humidity regions could also be considered, though on a lower priority. These channels are more important over open-waters than sea-ice regions. Later, the best channel combinations will also be used to estimate the humidity profiles. The ultimate goal is to include sufficient channels such that the full information content of tropospheric water is preserved. Extension to cross-track scanners will also be made. The same scheme will be applied to cross-track scanners however, the scheme will be modified to include the changes in surface emissivity with incidence angles. A larger database covering the various incidence angles will be necessary, but we will try to focus only on the central part of the swath, and avoid working with the increasing field of view towards the edge of the swath. 
 %The pivotal part of these retrievals would be using ML on the overlapping footprints to extract the hidden information without any explicit treatment.
 
-We will start the test retrievals in parallel to database creation so that early feedback on any issues can be made. QRNN is versatile to allow extension to include additional input channels or auxiliary data but the main task will be to analyse the results. During the development phase, evaluation (see sect.~\ref{sec:evaluation}) of the retrievals with existing retrieval products will be made to identify the areas requiring improvement.
+We will start the test retrievals in parallel to database creation so that early feedback on any issues can be made. QRNN is versatile to allow extension to include additional input channels or auxiliary data but the main task will be to analyse the results. During the development phase, evaluation (see Sect.~\ref{sec:evaluation}) of the retrievals with existing retrieval products will be made to identify the areas requiring improvement.
 
 The output of this WP will be one or more retrieval databases for WVP, humidity profiles and LWC.
 \vspace{-1.0ex}
@@ -488,7 +492,7 @@ The output of this WP will be one or more retrieval databases for WVP, humidity 
 \label{sec:evaluation}
 Since in this project we aim to solve the retrieval issues associated with the ever complex and changing surface characteristics of sea-ice, a detailed assessment will be expected to improve the applicability and future retrieval algorithms. A thorough investigation with the available \textit{in-situ} data, satellite products and reanalysis will be made. Firstly, direct comparisons with radio-soundings or data from flight campaigns will be used to estimate the accuracy of the product and reveal the uncertainties on finer scales. Statistical comparisons with other microwave and IR based humidity products  will also be made. Time series of daily and monthly means, and the probability distribution functions (PDFs) of the retrievals will be analysed. Here it would also be important to analyse the accuracy over seasons and different surface types.The evaluation part shall also go hand-in-hand with the retrieval WP.
 
-The dissemination of the retrieved dataset will be through conferences and journal articles. The assessment of how well the produced dataset answers the needs of NWP communities will also be addressed through collaborations (see sect.~\ref{sec:collaborations}) with ECMWF and Swedish Meteorological and Hydrological Institute (SMHI). 
+The dissemination of the retrieved dataset will be through conferences and journal articles. The assessment of how well the produced dataset answers the needs of NWP communities will also be addressed through collaborations (see Sect.~\ref{sec:collaborations}) with ECMWF and Swedish Meteorological and Hydrological Institute (SMHI). 
 \vspace{-1.0ex}
 \subsubsection*{WP 7 : Additional Retrievals}
 %
@@ -504,29 +508,94 @@ The high-resolution emissivity retrievals can be additionally post-processed to 
 \subsection{Risk Assessment}
 %
 \label{sec:risk}
-All activities planned in this project are a direct continuation of ongoing work and the level of risk in the basic work plan must be judged as low. The calculation of emissivity spectra over sea-ice and heterogeneous regions is often considered difficult and neglected, however with use high resolution SAR data (as planned) the risk of contamination and unwanted errors becomes low. There is some speculation around the usage of low frequencies like 22\,GHz and 37\,GHz considering their large footprint size, but their inclusion also remains low on priority. 
+All activities planned in this project are a direct continuation of ongoing
+work and the level of risk in the basic work plan must be judged as low. The
+calculation of emissivity spectra over sea-ice and heterogeneous regions is
+often considered difficult and neglected, however with use high resolution SAR
+data (as planned) the risk of contamination and unwanted errors becomes low.
+Usage of low frequencies like, 22 and 37\,GHz should be seen as more
+speculative considering their large footprint size, but their inclusion has
+also low on priority.
 
 \section{Impact and social benefits}
 %
 \label{sec:impact}
 
-The sophisticated retrieval approach will take into account the contribution from surface emissivity, thus making retrievals possible in areas where previously data was either not available or was highly uncertain. The overall procedure requires a deep understanding of the physics governing the observed radiances. This knowledge can be shared with the NWP community and a significant impact of the data on weather forecasting can be expected. A more consistent database of physical standalone retrievals is important for NWP, which rely on satellite based retrievals to determine the initial atmospheric conditions. Additionally, the sea-ice emissivity estimates can be used to reduce the forward model errors arising due to surface contribution in radiative transfer. Work towards amplifying the ingestion observations in NWP will be covered in association with modelling community at SMHI and ECMWF (see sect.~\ref{sec:collaborations}). 
+As a society, understanding and improving the weather, environmental and
+climate processes in the polar regions are important to tackle the effects
+of climate change, and also improving mid-latitude weather forecasts. The
+anthropogenic climate change over poles also has economic and political
+implications, e.g.\ commercial navigational activity through the Arctic
+requires accurate weather forecasts to avoid accidents and oil spills.
 
-As a society, understanding and improving the weather, environmental and climate processes in the polar regions is important to tackle the effects climate change, and also improving mid-latitude weather forecasts. The anthropogenic climate change over poles also has economic and political implications, e.g.\, commercial navigational activity through the Arctic requires accurate weather forecasts to avoid accidents and oil spills. 
+The overall retrieval procedure requires a deep understanding of the physics
+governing the observed radiances. This knowledge can be shared with the NWP
+community and an indirect significant impact of the data on weather forecasting
+can be expected. Work towards amplifying the ingestion observations in NWP will
+be covered in association with modelling community at SMHI and ECMWF (see
+Sec.~\ref{sec:collaborations}).
+
+\newpage
+
+%A consistent database of standalone retrievals
+%is important for NWP, which rely on satellite based retrievals to determine the
+%initial atmospheric conditions. Additionally, the sea-ice emissivity estimates
+%can be used to reduce the forward model errors arising due to surface
+%contribution in radiative transfer.
+
 
 \section{Collaborations}
 %
 \label{sec:collaborations}
-The use to retrieval database in NWP would require close cooperation with SMHI and ECMWF. Patrick Eriksson has been one of the leading contributors to the preparation of AWS and would also be involved in a Nordic weather study with SMHI around AWS. Furthermore, the contact with ECMWF is strengthened by the fact that Patrick Eriksson has been appointed ECMWF  fellow ({\footnotesize \url{www.ecmwf.int/en/about/media-centre/news/2020/ecmwf-appoints-seven-new-fellows-scientific-collaboration}}). Another contact at ECMWF is through David Duncan. He contributed to the recent study by Inderpreet Kaur \citep{kaur:2021:canma}, and the contact will be likely continued. 
+The retrievals will be made publicly available and we will actively search
+for cooperation inside the climate modelling community to ensure that the 
+data will be applied for verification of models and similar activities. \intodo{* Ask
+Luisa for names to mention?}
 
+The experience obtained in the project can be transferred to the NWP community
+by existing contacts. Patrick Eriksson has an established collaboration with
+SMHI (around ICI and QRNN), and AWS should broaden the contact. For example,
+discussions are ongoing on how Chalmers can contribute to the upcoming
+``Nordic AWS study''. Further, Patrick and Leif Eriksson are co-applicants in a
+proposal from SMHI, also submitted to SNSA 2021-R. The title of that proposal
+is ``Consistent Air-Ice-Sea Data Assimilation of Satellite Observations`` and
+there are high similarities between the projects.
+
+The EUMETSAT fellowship hold by V.\ Barlakas has established a direct
+collaboration with ECMWF \citep{barlakas:intro:21}. Furthermore, the interest
+in the research performed at Chalmers from ECMWF has resulted in
+that Patrick
+Eriksson has been appointed ECMWF fellow\footnote{See 
+  \url{www.ecmwf.int/en/about/media-centre/news/2020/ecmwf-appoints-seven-new-fellows-scientific-collaboration}}.
+Another contact at ECMWF is through David Duncan (former post doc at Chalmers).
+He contributed to the recent study by Inderpreet Kaur, and this contact will be
+maintained.
 \section{Staff situation}
 %
 \label{sec:staff}
-Inderpreet Kaur started as a postdoctoral researcher in the division in March 2020. She is presently working with retrieval of atmospheric ice using microwave instruments. She shall spend 80\,\% of her time towards the project. Patrick Eriksson is a Professor and has main expertise in atmospheric radiative transfer and retrieval methods. He will spend 5\% of his time on this project and contribute to all WPs. Luisa Ickes is an Assistant Professor, and has special research interest in the Arctic region and clouds in general. She will provide expertise in cloud physics, both when generating training data and evaluating retrievals (WPs 5, 6). Leif Eriksson is an Associate Professor and his research aims at developing methods to make land and ocean measurements with radar data. In this project, his expertise is sought on the use of SAR data in the project. He will mainly contribute to WP 1 and WP 7. 
+Inderpreet Kaur started as a postdoctoral researcher in the division in March
+2020. She is presently working with retrieval of atmospheric ice hydrometeors
+using microwave instruments. She shall spend 80\,\% of her time towards the
+project. Patrick Eriksson will contribute to all WPs and act as overall project
+leader. Luisa Ickes is an Assistant Professor, and has the Arctic region as her
+special research interest. She will provide expertise in cloud physics and the
+conditions in the Arctic region in general, both when generating training data
+and evaluating retrievals (WPs 1, 5 and 6). Leif Eriksson is an Associate
+Professor and his research aims at developing methods to observe land and ocean
+properties with radar data. In this project, his expertise is sought on the use
+of SAR data in the project. He will mainly contribute to WP 1 and WP 7. The
+last three persons will spend at least 5\,\% of their time on the project.
+During 2022 this will level be 10\,\% for Leif Eriksson. See further Cost
+Specification enclosure.
+
+
 
 \section{Satellite data}
 %
-All satellite data of concern, in this project, is publicly available. SSMIS data will be downloaded from \url{ https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc:C00810}, while ATMS data is available at \url{ftp://ftp-npp.bou.class.noaa.gov/}.
+All satellite data of concern in this project are publicly available. SSMIS
+data can be obtained at
+\url{www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc:C00810},
+and\\ATMS data are available at \url{ftp-npp.bou.class.noaa.gov/}.
 
 {\footnotesize
 	\bibliography{j_abbr,refs_pe1,references}
