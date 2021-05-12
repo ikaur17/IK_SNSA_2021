@@ -59,7 +59,7 @@ the task. The model is trained with detailed 3D radiative transfer simulations,
 to generate local scenes of measured radiances. The input to the simulations
 has a horizontal resolution finer than the size of the satellite footprints.
 For example, high-resolution SAR (Synthetic-aperture radar) imagery is applied to describe the
-distribution of sea-ice\,/\,open water at a resolution of \todo{?\,km}. As a result,
+distribution of sea-ice\,/\,open water at a resolution of \intodo{$\sim$90\,m}. As a result,
 aspects like inhomogeneous filling and overlap of the footprints are
 incorporated into the simulations and are then automatically considered in the
 retrieval process, in contrast to existing data extraction. Precipitation and
@@ -174,7 +174,7 @@ leaves the humidity close to the surface unconstrained.
 
 For this reason, efforts are being made to improve the "forward modelling",
 i.e.\ use auxiliary data to predict the local radiative properties of snow and
-sea-ice \citep[e.g.][]{tonboe:2010:thesi}. This constitutes a very hard problem
+sea-ice. This constitutes a very hard problem
 as the properties depend on a high number of snow and sea-ice
 variables. There will be progress in the area, but it will likely be slow.
 There is also another, less discussed, consideration, that the satellite
@@ -352,7 +352,7 @@ There is now a second cornerstone of the ARTS infrastructure, the associated
 database of single scattering properties \citep{eriksson:agene:18}. The main part contains data for 36 particle ``habits'' assuming totally random
 orientation (TRO). This makes the database the most comprehensive one.
 Some data for azimuthally random orientation (ARO) are also at hand
-\citep{brath:micro:20,ekelund:micro:20}. In principle, more ARO data of ice hydrometeors are needed, but in \citet{baralakas:intro:21} we show that the ARO case can be fairly well approximated by scaling the TRO data.
+\citep{brath:micro:20,ekelund:micro:20}. In principle, more ARO data of ice hydrometeors are needed, but in \citet{barlakas:intro:21} we show that the ARO case can be fairly well approximated by scaling the TRO data.
 
 \subsection{Preliminary results}
 %
@@ -361,7 +361,7 @@ This project will build upon the ongoing efforts, hence we briefly summarize the
 \subsubsection{Radiative transfer simulations}
 %
 \label{sec:radiative_transfer}
-To simulate GMI measurements at 166\,GHz and 183\,GHz, a dbZ based system described by \citet{ekelund:using:20} is followed. As an input, radar reflectivities are taken from Cloudsat and ERA5 reanalyses are used for atmospheric parameters. The particles are assumed to be ARO, and the approximation from \citet{baralakas:intro:21} is extended to include various scaling factors approximating different polarisations. The emissivities over land and water are taken from climatologies, however for snow and sea-ice surface types (identified using ERA data) an empirical snow and ice emissivity model is used.  
+To simulate GMI measurements at 166\,GHz and 183\,GHz, a dbZ based system described by \citet{ekelund:using:20} is followed. As an input, radar reflectivities are taken from Cloudsat and ERA5 reanalyses are used for atmospheric parameters. The particles are assumed to be ARO, and the approximation from \citet{barlakas:intro:21} is extended to include various scaling factors approximating different polarisations. The emissivities over land and water are taken from climatologies, however for snow and sea-ice surface types (identified using ERA data) an empirical snow and ice emissivity model is used.  
 
 We use the existing modelling and experimental studies \citep{harlow:2009:milli, hewison:2002:airbo} to define the valid ranges of emissivity variability for frequencies in 160-183\,GHz band. If $\epsilon_{193}, \epsilon_{159}$ represents the emissivities for 193\,GHz and 159\,GHz respectively, then
 \begin{align}
@@ -464,7 +464,7 @@ The WP output will be batches of simulated radiances.
 \label{sec:setup}
 The use of the retrieval database will be made without introducing any
 re-mapping between the different footprint sizes. All footprints inside a
-region would be used as input, and the database generation will mimic this. This approach will make much better use of the spatial information provided by the overlap of instrument footprints. The target resolution would not be compromised and retrievals can be made at the highest possible resolution, while preserving the information at their native resolution. This has been demonstrated using 2DVAR in  \citet{duncan:onthe:19}. But here we shall aim to achieve the same purpose by using QRNN. In fact, by doing this by a database
+region would be used as input, and the database generation will mimic this. This approach will make much better use of the spatial information provided by the overlap of instrument footprints. The target resolution would not be compromised and retrievals can be made at the highest possible resolution, while preserving the information at their native resolution. This has been demonstrated using 2DVAR in  \citet{duncan:anexp:19}. But here we shall aim to achieve the same purpose by using QRNN. In fact, by doing this by a database
 (and not 2DVAR) we are not restricted to describe spatial correlations by
 covariance matrices and the QRNN version should be even more advantageous.
 
@@ -488,7 +488,7 @@ The output of this WP will be one or more retrieval databases for WVP, humidity 
 \label{sec:evaluation}
 Since in this project we aim to solve the retrieval issues associated with the ever complex and changing surface characteristics of sea-ice, a detailed assessment will be expected to improve the applicability and future retrieval algorithms. A thorough investigation with the available \textit{in-situ} data, satellite products and reanalysis will be made. Firstly, direct comparisons with radio-soundings or data from flight campaigns will be used to estimate the accuracy of the product and reveal the uncertainties on finer scales. Statistical comparisons with other microwave and IR based humidity products  will also be made. Time series of daily and monthly means, and the probability distribution functions (PDFs) of the retrievals will be analysed. Here it would also be important to analyse the accuracy over seasons and different surface types.The evaluation part shall also go hand-in-hand with the retrieval WP.
 
-The dissemination of the retrieved dataset will be through conferences and journal articles. The assessment of how well the produced dataset answers the needs of NWP communities will also be addressed through collaborations with ECMWF and Swedish Meteorological and Hydrological Institute (SMHI). 
+The dissemination of the retrieved dataset will be through conferences and journal articles. The assessment of how well the produced dataset answers the needs of NWP communities will also be addressed through collaborations (see sect.~\ref{sec:collaborations}) with ECMWF and Swedish Meteorological and Hydrological Institute (SMHI). 
 \vspace{-1.0ex}
 \subsubsection*{WP 7 : Additional Retrievals}
 %
@@ -517,7 +517,7 @@ As a society, understanding and improving the weather, environmental and climate
 \section{Collaborations}
 %
 \label{sec:collaborations}
-The use to retrieval database in NWP would require close cooperation with SMHI and ECMWF. Patrick Eriksson has been one of the leading contributors to the preparation of AWS and would also be involved in a Nordic weather study with SMHI around AWS. Furthermore, the contact with ECMWF is strengthened by the fact that Patrick Eriksson has been appointed ECMWF  fellow ({\footnotesize \url{www.ecmwf.int/en/about/media-centre/news/2020/ecmwf-appoints-seven-new-fellows-scientific-collaboration}}). Another contact at ECMWF is through David Duncan. He contributed to the recent study by Inderpreet Kaur, and the contact will be likely continued. 
+The use to retrieval database in NWP would require close cooperation with SMHI and ECMWF. Patrick Eriksson has been one of the leading contributors to the preparation of AWS and would also be involved in a Nordic weather study with SMHI around AWS. Furthermore, the contact with ECMWF is strengthened by the fact that Patrick Eriksson has been appointed ECMWF  fellow ({\footnotesize \url{www.ecmwf.int/en/about/media-centre/news/2020/ecmwf-appoints-seven-new-fellows-scientific-collaboration}}). Another contact at ECMWF is through David Duncan. He contributed to the recent study by Inderpreet Kaur \citep{kaur:2021:canma}, and the contact will be likely continued. 
 
 \section{Staff situation}
 %
