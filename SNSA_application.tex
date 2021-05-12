@@ -81,30 +81,90 @@ ongoing trends involved in the Arctic amplification of global warming.
 \subsection{Background}
 %
 \label{sec:background}
-The Arctic is a very sensitive region to climate change and has a significant influence on the mid-latitudes, e.g. European weather patterns. In the recent years an amplified warming (2-3 times higher compared to the rest of the world) has been observed in this region (Arctic amplification), which is caused by unique feedback processes influencing the Arctic climate. Unfortunately detailed knowledge on the feedback processes is still missing and the scarcity of observations in the Arctic make it difficult to assess the situation and processes taking place. However, water vapour and the increase in water vapour in the last decades due to decreased sea ice cover seems to be one of the key players of Arctic feedback processes \citep{serreze:2012:recen, vihma:2016:theat}  
-A decrease in sea ice leads to an increased uptake of solar radiation of the Arctic ocean which enhances the heat flux from the ocean to the atmosphere and the amount of water vapour in the air, a greenhouse gas that can induce further warming and melting of sea ice \citep{screen:2010:thece}. 
-In addition to its role as a greenhouse gas, water vapour is also relevant when it comes to the water cycle in the Arctic, i.e. clouds and precipitation which have an impact on surface temperature and sea ice as well \citep{blanchet:water:1995}. To understand and monitor water vapour in the Arctic, its role for the Arctic water cycle and its climate impact observations are needed.
-Conventional observations such as radiosondes have a substantial impact on the numerical weather prediction of the Arctic \citep{lawrence:2019:usean}, but they are not able to provide a comprehensive spatial coverage as satellites can do.
+The Arctic is a very sensitive region to climate change and has a significant
+influence on the mid-latitudes, e.g.\ European weather patterns. In the recent
+years an amplified warming (2-3 times higher compared to the rest of the world)
+has been observed in this region (Arctic amplification), which is caused by
+unique feedback processes influencing the Arctic climate. Unfortunately
+detailed knowledge on the feedback processes is still missing and the scarcity
+of observations in the Arctic makes it difficult to assess the situation and
+processes taking place. However, water vapour and the increase in water vapour
+in the last decades due to decreased sea ice cover seems to be one of the key
+players of Arctic feedback processes \citep{serreze:2012:recen,
+  vihma:2016:theat} A decrease in sea ice leads to an increased uptake of solar
+radiation of the Arctic ocean which enhances the heat flux from the ocean to
+the atmosphere and the amount of water vapour in the air, a greenhouse gas that
+can induce further warming and melting of sea ice \citep{screen:2010:thece}. In
+addition to its role as a greenhouse gas, water vapour is also relevant when it
+comes to the water cycle in the Arctic, i.e. clouds and precipitation which
+have an impact on surface temperature and sea ice as well
+\citep{blanchet:water:1995}. To understand and monitor water vapour in the
+Arctic, its role for the Arctic water cycle and its climate impact observations
+are needed. Conventional observations such as radiosondes have a substantial
+impact on the numerical weather prediction of the Arctic
+\citep{lawrence:2019:usean}, but they are not able to provide a comprehensive
+spatial coverage as satellites can do.
 
 \subsection{Previous work}
 %
 \label{sec:previousworks}
 %
-Over the Arctic, the polar orbiting satellites provide the most dense coverage of observations, both from infrared and microwave instruments. As the area experiences polar night and has extensive cloud cover, optical and infrared techniques suffer from basic limitations; thus to avoid these issues, only satellite-based passive microwave data is considered. Over the polar regions, a challenge encountered by passive microwave observations is the high and highly variable contribution by surface emission.
+Over the Arctic, polar orbiting satellites provide the most dense coverage
+of observations, both by infrared and microwave instruments. As the area
+experiences polar night and has extensive cloud cover, optical and infrared
+techniques suffer from basic limitations; thus to avoid these issues, only
+satellite-based passive microwave data are considered. Over the polar regions, a
+challenge encountered by passive microwave observations is the high and highly
+variable contribution by surface emission.
 
-The most important work towards stand-alone retrievals of water vapour path (WVP) from microwave humidity sounders (such as Advanced Microwave
-Sounding Unit-B (AMSU-B) and Microwave Humidity Sounder (MHS)) comes from
-University of Bremen. Their retrieval concept was initiated by
-\citet{miao:2001:atmos}, where they utilized water vapour absorption channels
-around 183\,GHz and 150\,GHz window channel to retrieve the WVP upto 7\,kg m$^{-2}$. Subsequently \citet{melsheimer:2008:impro} extended this approach to include 89\,GHz to retrieve WVP upto 15\,kg m$^{-2}$ over sea-ice regions. They used data from measurement campaigns to formulate a relationship between sea-ice emissivity over different frequencies. Later,
-\citet{scarlat:2018:retri} extended the method to include all surface types
-using AMSU-B. A comparison of the retrieved WVP against ERA-Interim showed that the over winter months, the RMSD was 1.86\,kg m$^{-2}$ but over summer months the errors were up to 5.67\,kg m$^{-2}$ due to the algorithm being constrained by its upper retrieval limit of 15\,kg m$^{-2}$. Besides microwave sounding, an attempt at WVP has also been made using low frequency microwave observations from Advanced Microwave Scanning Radiometer (AMSR). For example, \citet{scarlat:2017:exper} use optimal estimation (OEM) for multi-parameter retrieval over Arctic, and \citet{zabolotskikh:2020:anadv} attempt at WVP retrieval over both open ocean and sea-ice regions using neural networks based inversion. In both products, the highest uncertainties in the retrieval are linked to the empirical estimates of surface emissivity over sea-ice regions. In fact the skill of all available satellite based water vapour retrievals in this region is highly variable over different atmospheric and surface conditions. For example, in the central Arctic, for summer months, the monthly means derived from different satellite products can differ upto 30\% \citep{crewell:2021:asyst}.
+The most extensive work towards stand-alone retrievals of water vapour path
+(WVP) from microwave humidity sounders (such as Advanced Microwave Sounding
+Unit-B (AMSU-B) and Microwave Humidity Sounder (MHS)) comes from University of
+Bremen. Their retrieval concept was initiated by \citet{miao:2001:atmos}, where
+they utilized water vapour absorption channels around 183\,GHz and 150\,GHz
+window channel to retrieve the WVP upto 7\,kg m$^{-2}$. Subsequently
+\citet{melsheimer:2008:impro} extended this approach to include 89\,GHz to
+retrieve WVP upto 15\,kg m$^{-2}$ over sea-ice regions. They used data from
+measurement campaigns to formulate a relationship between sea-ice emissivity
+over different frequencies. Later, \citet{scarlat:2018:retri} extended the
+method to include all surface types using AMSU-B. A comparison of the retrieved
+WVP against ERA-Interim showed that the over winter months, the RMSD was
+1.86\,kg m$^{-2}$ but over summer months the errors were up to 5.67\,kg
+m$^{-2}$ due to the algorithm being constrained by its upper retrieval limit of
+15\,kg m$^{-2}$. Further, an attempt has also been made to use low
+frequency microwave observations from Advanced Microwave Scanning Radiometer
+(AMSR). For example, \citet{scarlat:2017:exper} use optimal estimation (OEM)
+for multi-parameter retrieval over Arctic, and \citet{zabolotskikh:2020:anadv}
+attempt at WVP retrieval over both open ocean and sea-ice regions using neural
+networks based inversion. In both products, the highest uncertainties in the
+retrieval are linked to the empirical estimates of surface emissivity over
+sea-ice regions. In fact the skill of all available satellite based water
+vapour retrievals in this region is highly variable over different atmospheric
+and surface conditions. For example, in the central Arctic, for summer months,
+the monthly means derived from different satellite products can differ up to
+30\% \citep{crewell:2021:asyst}.
 
-The frequent sampling of polar orbiting satellite data over the Arctic caries huge potential at improving the numerical weather prediction (NWP). \citet{lawrence:2019:usean} show that over summer months, assimilation of microwave sounding observations leads to more than 3\% reduction in the total global forecast error, but during winters, their impact reduces to 2\%, as almost 24\% of the microwave observations are rejected. The high rejection rate in the winter season is a consequence of the forward model errors associated with the estimation of surface properties particularly over snow and sea-ice, and the high forecast model errors \citep{bauer:2016:aspec}. In global models, the reduced skill over the Arctic in the winter months also affects the NWP over North America and Eurasia. Thus, efforts are required to bridge the gap between the seasons. Increasing the usage of satellite data over all surfaces in Integrated Forecast System (IFS) is also identified as one of the priorities in ECMWF (European Centre for Medium-Range Weather Forecasts) Strategy for 2021-2030.
+The frequent sampling of polar orbiting satellite data over the Arctic caries
+huge potential at improving numerical weather prediction (NWP).
+\citet{lawrence:2019:usean} show that over summer months, assimilation of
+microwave sounding observations leads to more than 3\% reduction in the total
+global forecast error, but during winters, their impact reduces to 2\%, as
+almost 24\% of the microwave observations are rejected. The high rejection rate
+in the winter season is a consequence of the forward model errors associated
+with the estimation of surface properties particularly over snow and sea-ice,
+and the high forecast model errors \citep{bauer:2016:aspec}. Thus, efforts are
+required to bridge the gap between the seasons. Further, despite that
+reanalysis based on NWP show good skill in for VWP, vertical profiles can be
+systematically wrong and cloud fractions are poorly predicted, with large
+impact on the surface radiative fluxes driving melting of ice
+\citep{graham:2019:evalu}. Increasing the usage of satellite data over all
+surfaces in Integrated Forecast System (IFS) is also identified as one of the
+priorities in ECMWF (European Centre for Medium-Range Weather Forecasts)
+Strategy for 2021-2030.
 
 
 
-\subsection{The way forward : Problems and solutions }
+\subsection{The way forward: Problems and solutions }
 
 %\subsubsection{Problems and solutions}
 
@@ -149,11 +209,38 @@ adjacent footprints, and not just individual ones, the information hidden in the
 \subsection{Scientific objectives and considerations}
 The main objective of this study is to provide physical, stand-alone, water retrievals over the Arctic from microwave instruments, which can be comparable to or better in performance than existing reanalyses and satellite based products. The basic idea is to combine a database based on sophisticated 3D radiative transfer with ML to retrieve water properties and estimate the associated uncertainties. The primary aim is to estimate humidity, however, a simultaneous retrieval of LWC will also be undertaken as a second priority. Nonetheless, before going ahead, it is crucial to elucidate the following:
 \begin{itemize}
-\item The region north of Arctic Circle ($66^{\circ}33^{'}$N) shall be defined as the Arctic region.	
-\item The retrieval database will work like the prior assumptions in a standard   Bayesian retrieval, but by using ML we will not be restricted to Gaussian statistics. ML can handle strong non-linear problems, and we can include   aspects that are very difficult to handle in traditional retrievals (such as  inhomogeneous footprints). It is not needed to predict the conditions exactly where the observation is made, it is sufficient for the simulations to have a  similar variability as reality. The ML algorithm uses the database provided to give the posterior knowledge of the quantity sought, given the scene of observations.
-\item If useful additional information becomes available during the course of the project, it can be incorporated into the ML training. For example, if there is progress in snow modelling and the local emissivity can be estimated with  some certainty, this can be seen as a virtual measurement and be used to improve the ML model.
+ \vspace{-1ex}
+\item The region north of Arctic Circle ($66^{\circ}33^{'}$N) will be defined
+  as the Arctic region.
+ \vspace{-1ex}
+\item The retrieval database will work like the prior assumptions in a standard
+  Bayesian retrieval, but by using ML we will not be restricted to Gaussian
+  statistics. ML can handle strong non-linear problems, and we can include
+  aspects that are very difficult to handle in traditional retrievals (such as
+  inhomogeneous footprints). It is not needed to predict the conditions exactly
+  where the observation is made, it is sufficient for the simulations to have a
+  similar variability as reality. The ML algorithm uses the database provided
+  to give the posterior knowledge of the quantity sought, given the scene of
+  observations.
+ \vspace{-1ex}
+\item We will invert all observations. For certain conditions some channels
+  will not provide any useful information due to interference of the surface or
+  e.g.\ heavy snowfall. Our retrievals will then fall back to the prior
+  information embedded in the database in a stable manner and a proper
+  uncertainty estimate can still be given. The key here is that the disturbing
+  factors are included in the simulations. This in contrast to other retrievals
+  where forward model errors not are properly described and e.g.\ including
+  surface sensitive channels can easily lead to a totally unphyscial retrieval.
+  \vspace{-1ex}
+\item If useful additional information becomes available during the course of
+  the project, it can be incorporated into the ML training. For example, if
+  there is progress in snow modelling and the local emissivity can be estimated
+  with some certainty, this can be seen as a virtual measurement and be used to
+  improve the ML model.
 \end{itemize}
 
+
+\newpage
 \subsection{Data and tools}
 % 
 \subsubsection{Satellite instruments}
@@ -172,7 +259,7 @@ Microwave Imager/Sounder\footnote{\url{www.wmo-sat.info/oscar/instruments/view/s
 microwave radiometer covering the Arctic having channels around 183\,GHz (it
 will be followed by MWI). There is a higher selection of possible cross-track sensors. Here ATMS (Advanced Technology Microwave Sounder\footnote{\url{www.wmo-sat.info/oscar/instruments/view/atms}}) will be the primary choice as it has 5 channels around 183\,GHz (as both MWI and AWS will have). The retrieval scheme is basically identical between conical scanners and cross-track scanners, but the latter will require more simulations (for the retrieval database) to cover the varying incidence angle for this scanning approach.
 
-\begin{table}[t]
+\begin{table}[!t]
 	\footnotesize
 	\centering
 	\caption{Brief specifications of the conical scanners (left) and cross-track scanners (right), relevant to this study.}
