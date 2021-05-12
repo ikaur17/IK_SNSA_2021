@@ -50,7 +50,7 @@
 \section{General summary}
 %
 The Arctic is a water world, experiencing rapid warming. Passive microwave
-satellite observations are required for a comprehensive view of the water in the region and the basic aim of the project is to improve the utilisation of this data source, particularly the high-frequency part. The project targets water in the atmosphere. The primary concern is humidity, but
+satellite measurements are required for a comprehensive view of the water in the region and the basic aim of the project is to improve the utilisation of this data source, particularly the high-frequency part. The project targets water in the atmosphere. The primary concern is humidity, but
 the retrieval system is highly versatile and retrievals of liquid water  content (LWC), snowfall, and sea-ice concentration (in order of priority) are also
 feasible.
 
@@ -90,7 +90,7 @@ Conventional observations such as radiosondes have a substantial impact on the n
 %
 \label{sec:previousworks}
 %
-Over the Arctic, the polar orbiting satellites provide the most dense coverage of observations, both from infrared and microwave instruments. As the area experiences polar night and has extensive cloud cover, optical and infrared techniques suffer from basic limitations; thus to avoid these issues, only satellite-based passive microwave data is considered. Over the polar regions, a challenge encountered by passive microwave observations is the high and highly variable contribution by surface emission.
+Over the Arctic, the polar orbiting satellites provide the most dense coverage of observations, both from infrared and microwave instruments. As the area experiences polar night and has extensive cloud cover, optical and infrared techniques suffer from basic limitations; thus to avoid these issues, only satellite-based passive microwave data is considered. Over the polar regions, a challenge encountered by passive microwave measurements is the high and highly variable contribution by surface emission.
 
 The most important work towards stand-alone retrievals of water vapour path (WVP) from microwave humidity sounders (such as Advanced Microwave
 Sounding Unit-B (AMSU-B) and Microwave Humidity Sounder (MHS)) comes from
@@ -98,9 +98,9 @@ University of Bremen. Their retrieval concept was initiated by
 \citet{miao:2001:atmos}, where they utilized water vapour absorption channels
 around 183\,GHz and 150\,GHz window channel to retrieve the WVP upto 7\,kg m$^{-2}$. Subsequently \citet{melsheimer:2008:impro} extended this approach to include 89\,GHz to retrieve WVP upto 15\,kg m$^{-2}$ over sea-ice regions. They used data from measurement campaigns to formulate a relationship between sea-ice emissivity over different frequencies. Later,
 \citet{scarlat:2018:retri} extended the method to include all surface types
-using AMSU-B. A comparison of the retrieved WVP against ERA-Interim showed that the over winter months, the RMSD was 1.86\,kg m$^{-2}$ but over summer months the errors were up to 5.67\,kg m$^{-2}$ due to the algorithm being constrained by its upper retrieval limit of 15\,kg m$^{-2}$. Besides microwave sounding, an attempt at WVP has also been made using low frequency microwave observations from Advanced Microwave Scanning Radiometer (AMSR). For example, \citet{scarlat:2017:exper} use optimal estimation (OEM) for multi-parameter retrieval over Arctic, and \citet{zabolotskikh:2020:anadv} attempt at WVP retrieval over both open ocean and sea-ice regions using neural networks based inversion. In both products, the highest uncertainties in the retrieval are linked to the empirical estimates of surface emissivity over sea-ice regions. In fact the skill of all available satellite based water vapour retrievals in this region is highly variable over different atmospheric and surface conditions. For example, in the central Arctic, for summer months, the monthly means derived from different satellite products can differ upto 30\% \citep{crewell:2021:asyst}.
+using AMSU-B. A comparison of the retrieved WVP against ERA-Interim showed that the over winter months, the RMSD was 1.86\,kg m$^{-2}$ but over summer months the errors were up to 5.67\,kg m$^{-2}$ due to the algorithm being constrained by its upper retrieval limit of 15\,kg m$^{-2}$. Besides microwave sounding, an attempt at WVP has also been made using low frequency microwave measurements from Advanced Microwave Scanning Radiometer (AMSR). For example, \citet{scarlat:2017:exper} use optimal estimation (OEM) for multi-parameter retrieval over Arctic, and \citet{zabolotskikh:2020:anadv} attempt at WVP retrieval over both open ocean and sea-ice regions using neural networks based inversion. In both products, the highest uncertainties in the retrieval are linked to the empirical estimates of surface emissivity over sea-ice regions. In fact the skill of all available satellite based water vapour retrievals in this region is highly variable over different atmospheric and surface conditions. For example, in the central Arctic, for summer months, the monthly means derived from different satellite products can differ upto 30\% \citep{crewell:2021:asyst}.
 
-The frequent sampling of polar orbiting satellite data over the Arctic caries huge potential at improving the numerical weather prediction (NWP). \citet{lawrence:2019:usean} show that over summer months, assimilation of microwave sounding observations leads to more than 3\% reduction in the total global forecast error, but during winters, their impact reduces to 2\%, as almost 24\% of the microwave observations are rejected. The high rejection rate in the winter season is a consequence of the forward model errors associated with the estimation of surface properties particularly over snow and sea-ice, and the high forecast model errors \citep{bauer:2016:aspec}. In global models, the reduced skill over the Arctic in the winter months also affects the NWP over North America and Eurasia. Thus, efforts are required to bridge the gap between the seasons. Increasing the usage of satellite data over all surfaces in Integrated Forecast System (IFS) is also identified as one of the priorities in ECMWF (European Centre for Medium-Range Weather Forecasts) Strategy for 2021-2030.
+The frequent sampling of polar orbiting satellite data over the Arctic caries huge potential at improving the numerical weather prediction (NWP). \citet{lawrence:2019:usean} show that over summer months, assimilation of microwave sounding measurements leads to more than 3\% reduction in the total global forecast error, but during winters, their impact reduces to 2\%, as almost 24\% of the microwave measurements are rejected. The high rejection rate in the winter season is a consequence of the forward model errors associated with the estimation of surface properties particularly over snow and sea-ice, and the high forecast model errors \citep{bauer:2016:aspec}. In global models, the reduced skill over the Arctic in the winter months also affects the NWP over North America and Eurasia. Thus, efforts are required to bridge the gap between the seasons. Increasing the usage of satellite data over all surfaces in Integrated Forecast System (IFS) is also identified as one of the priorities in ECMWF (European Centre for Medium-Range Weather Forecasts) Strategy for 2021-2030.
 
 
 
@@ -130,7 +130,7 @@ footprint size, and good spatial resolution is thus advantageous even if the atm
 We will attack these issues from a new angle, now feasible due to progress in
 machine learning (ML). We avoid the limitations in traditional approaches by
 basing the inversions on a retrieval database, that is used to train the ML
-model. The simulated observations in the database are generated on
+model. The simulated measurements in the database are generated on
 high-resolution data and variations of both surface and atmospheric variables
 inside the footprint get included. In addition, by simulating "scenes" of
 adjacent footprints, and not just individual ones, the information hidden in the overlap of footprints can be exploited. The later effectively increases the horizontal resolution, but also provides background spatial information, such as indications on if the surface is homogeneous or mixed.
@@ -242,7 +242,7 @@ In all the applications QRNN has been tested so far, it has outperformed the
 existing approaches. This includes a very recent study by Inderpreet Kaur for
 predicting noise-free clear-sky radiances from microwave humidity channels
 \citep{kaur:2021:canma}. Previously, \citet{pfreundschuh:aneur:18} had shown
-the advantage of QRNN in predicting cloud top pressure from observations by the
+the advantage of QRNN in predicting cloud top pressure from measurements by the
 Moderate Resolution Imaging Spectroradiometer (MODIS). Recent studies with QRNN
 also include working with Goddard profiling algorithm \citep[GPROF,][] {kummerow:2015:thevo} team to replace
 BMCI with QRNN in the GPROF retrievals (manuscript in
@@ -270,14 +270,14 @@ Some data for azimuthally random orientation (ARO) are also at hand
 
 \subsection{Preliminary results}
 %
-This project will build upon the ongoing efforts, hence we briefly summarize the preparatory steps we have undertaken to demonstrate the feasibility of the project. The initial steps are based on the  observations from the Global Precipitation Measurement (GPM) Microwave Imager (GMI). GMI is non-sunsynchronous conical scanning microwave radiometer providing coverage upto 65$^{\circ}$. We select data from January and only high latitudes (45$^{\circ}$ - 65$^{\circ}$ in both hemispheres), so that both sea-ice and snow surface types can be considered. 
+This project will build upon the ongoing efforts, hence we briefly summarize the preparatory steps we have undertaken to demonstrate the feasibility of the project. The initial steps are based on the  measurements from the Global Precipitation Measurement (GPM) Microwave Imager (GMI). GMI is non-sunsynchronous conical scanning microwave radiometer providing coverage upto 65$^{\circ}$. We select data from January and only high latitudes (45$^{\circ}$ - 65$^{\circ}$ in both hemispheres), so that both sea-ice and snow surface types can be considered. 
 
 \subsubsection{Radiative transfer simulations}
 %
 \label{sec:radiative_transfer}
-To simulate GMI observations at 166\,GHz and 183\,GHz, a dbZ based system described by \citet{ekelund:using:20} is followed. As an input, radar reflectivities are taken from Cloudsat and ERA5 reanalyses are used for atmospheric parameters. The particles are assumed to be ARO, and the approximation from \citet{baralakas:intro:21} is extended to include various scaling factors approximating different polarisations. The emissivities over land and water are taken from climatologies, however for snow and sea-ice surface types an empirical snow and ice emissivity model is used. 
+To simulate GMI measurements at 166\,GHz and 183\,GHz, a dbZ based system described by \citet{ekelund:using:20} is followed. As an input, radar reflectivities are taken from Cloudsat and ERA5 reanalyses are used for atmospheric parameters. The particles are assumed to be ARO, and the approximation from \citet{baralakas:intro:21} is extended to include various scaling factors approximating different polarisations. The emissivities over land and water are taken from climatologies, however for snow and sea-ice surface types an empirical snow and ice emissivity model is used. 
 
-We use the existing modelling and experimental studies \citep{harlow:2009:milli, harlow:2012:tundr,hewison:2002:airbo} to define the valid ranges of emissivity variability for frequencies in 160-183\,GHz band. If $\epsilon_{193}, \epsilon_{159}$ represents the emissivities for 193\,GHz and 159\,GHz respectively, then
+We use the existing modelling and experimental studies \citep{harlow:2009:milli, hewison:2002:airbo} to define the valid ranges of emissivity variability for frequencies in 160-183\,GHz band. If $\epsilon_{193}, \epsilon_{159}$ represents the emissivities for 193\,GHz and 159\,GHz respectively, then
 \begin{align}
 \epsilon_{193}& = \min({N(\mu_{193}, \sigma_{193}^{2}), 1});\, \mu_{193} = 0.78, \sigma_{193} = 0.07 \label{eq:1}\\
 \epsilon_{159}& = \min(\epsilon_{193} - N(\mu_{159}, \sigma_{159}^{2}), 1) ;\,  \mu_{159} = 0.02, \sigma_{159} = 0.02\,\label{eq:2}
@@ -422,7 +422,7 @@ All activities planned in this project are a direct continuation of ongoing work
 \section{Impact and social benefits}
 %
 \label{sec:impact}
-Arctic amplification is garnering rapid interest, thus to improve the understanding of weather, environmental and climate processes in the polar regions, amplifying the usage of satellite derived polar products in numerical models is crucial. . We propose that the intended standalone retrievals of Arctic water shall improve the ingestion of satellite data than it is being done now. Additionally, high resolution emissivity information will also be an important result which shall benefit the assimilation of microwave observations over polar regions. This aspect will be covered in association and feedback from numerical modelling community at SMHI and ECMWF (see sect.~\ref{sec:evaluation}).
+Arctic amplification is garnering rapid interest, thus to improve the understanding of weather, environmental and climate processes in the polar regions, amplifying the usage of satellite derived polar products in numerical models is crucial. . We propose that the intended standalone retrievals of Arctic water shall improve the ingestion of satellite data than it is being done now. Additionally, high resolution emissivity information will also be an important result which shall benefit the assimilation of microwave measurements over polar regions. This aspect will be covered in association and feedback from numerical modelling community at SMHI and ECMWF (see sect.~\ref{sec:evaluation}).
 
 
 In other ways, it also has implications on mid-latitude weather forecasts
