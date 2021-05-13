@@ -13,24 +13,25 @@
 \tikzstyle{block} = [rectangle, draw, fill=blue!10, 
     text width=5em, text badly centered, rounded corners, minimum height=7em]
 \tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,fill=red!4, node distance=2cm, minimum height=3em, text badly centered]
-\tikzstyle{cloud1} = [draw, ellipse,fill=green!4, node distance=2cm, minimum height=4em, text width=6em , text badly centered]
+\tikzstyle{cloud} = [draw, ellipse,fill=red!4, node distance=2cm, minimum height=3em, text centered, text width=6em]
+\tikzstyle{cloud2} = [draw, ellipse,fill=red!4, node distance=2cm, minimum height=3em, text centered, text width=4em]
+\tikzstyle{cloud1} = [draw, ellipse,fill=green!4, node distance=2cm, minimum height=4em, text width=4em , text badly centered]
     
 \begin{tikzpicture}[node distance = 2cm, auto]
     % Place nodes
     %\node [cloud] (icon) {ICON model};
     \node [block] (init) {Scene generator};
     \node [block, right of=init, node distance = 3cm] (arts) {ARTS};
-    \node [cloud, above of=init, node distance = 3cm ] (harmonieinput) {HARMONIE-AROME};
-    \node [cloud, below of=arts, node distance = 3cm] (psd) {PSD};
-    \node [cloud1, below of=init, node distance = 3cm] (sie) {Surface emissivity};
-    \node [cloud1, left of= sie, node distance = 5cm] (sic) {Sea-ice concentration};
+    \node [cloud, above of=init, node distance = 3.5cm ] (harmonieinput) {HARMONIE-AROME};
+    \node [cloud, below of=arts, node distance = 3.5cm] (psd) {Scattering database};
+    %\node [cloud1, left of= sie, node distance = 5cm] (sic) {Sea-ice concentration};
     \node [block, left of= init, node distance = 3cm] (classify) {Sea-ice classification};
-	\node [cloud, right of= arts, node distance = 2cm](tb) {$T_b$};
-	\node [cloud, left of = classify, node distance = 3cm] (sar) {SAR};
-	\node [block, right of=tb, node distance = 2cm] (qrnn) {QRNN};
-	\node [cloud1, above of=qrnn, node distance = 3cm] (wvp) {WVP};
-	\node [cloud1, below of=qrnn, node distance = 3cm] (lwc) {Liquid Water Content};
+    \node [cloud, below of=classify, node distance = 3.5cm] (sie) {Surface emissivity};
+	\node [cloud2, right of= arts, node distance = 3.0cm](tb) {Radiances};
+	\node [cloud2, above of = classify, node distance = 3.5cm] (sar) {SAR};
+	\node [block, right of=tb, node distance = 3.5cm] (qrnn) {QRNN};
+	\node [cloud1, above of=qrnn, node distance = 3.5cm] (wvp) {WVP};
+	\node [cloud1, below of=qrnn, node distance = 3.5cm] (lwc) {Liquid Water Content};
 	
     %\node [block, left of=evaluate, node distance=3cm] (update) {update model};
     %\node [decision, below of=evaluate] (decide) {is best candidate better?};
@@ -45,7 +46,7 @@
     \path [line] (sar) -- (classify);
     \path [line] (tb) -- (qrnn);
     \path [line] (qrnn) -- (wvp);
-    \path [line] (sie) -- (sic);
+    %\path [line] (sie) -- (sic);
     \path [line] (classify) -- (sie);
     \path [line] (classify) -- (init);
     \path [line] (qrnn) -- (lwc);
