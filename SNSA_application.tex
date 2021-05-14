@@ -111,7 +111,7 @@ techniques suffer from basic limitations; thus to avoid these issues, only
 satellite-based passive microwave data are considered in the proposed project. Over the polar regions, a challenge encountered by passive microwave observations is the high and highly variable contribution by surface emission.
 
 The most extensive work towards stand-alone retrievals of water vapour path
-(WVP) over the Arctic using microwave humidity sounders (such as Advanced Microwave Sounding Unit-B (AMSU-B) and Microwave Humidity Sounder (MHS) comes from University of Bremen. Their retrieval concept was initiated by \citet{miao:2001:atmos}, where they utilized water vapour absorption channels around 183\,GHz and 150\,GHz window channel to retrieve the WVP upto 7\,kg m$^{-2}$. Subsequently \citet{melsheimer:2008:impro} extended this approach to include 89\,GHz to retrieve WVP upto 15\,kg m$^{-2}$ over sea-ice regions. They used data from
+(WVP) over the Arctic using microwave humidity sounders (such as Advanced Microwave Sounding Unit-B (AMSU-B) and Microwave Humidity Sounder (MHS) comes from University of Bremen. Their retrieval concept was initiated by \citet{miao:2001:atmos}, where they utilized water vapour absorption channels around 183\,GHz and 150\,GHz window channel to retrieve the WVP upto 7\,kg m$^{-2}$. Subsequently \citet{melsheimer:2008:impro} extended this approach to include 89\,GHz to retrieve WVP up to 15\,kg m$^{-2}$ over sea-ice regions. They used data from
 measurement campaigns to formulate a relationship between sea-ice emissivity
 over different frequencies. Later, \citet{scarlat:2018:retri} extended the
 method to include all surface types using AMSU-B. A comparison of the retrieved
@@ -497,13 +497,13 @@ the computational resources available from Chalmers central cluster
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.24\textwidth}
 		\caption{Flowchart of the proposed retrieval system. The green boxes
-          represent the retrievals. Only WPs 1-5 are shown. WPs related to evaluation (WP6) and additional retrievals (WP7) are not shown.
+          represent the retrievals. Only WPs 1-5 are shown. WPs related to evaluation (WP 6) and additional retrievals (WP 7) are not shown.
 		} \label{fig:flowchart}
 	\end{minipage}
 \end{figure}
 
 \vspace{-1ex}
-\subsubsection*{WP1: Basic atmospheric scenarios}
+\subsubsection*{WP 1: Basic atmospheric scenarios}
 %
 
 \label{sec:atmscenes}
@@ -519,7 +519,7 @@ instance where such high-resolution information would be used in this context.
 The output of this work package will be a broad set of 3D atmospheric scenarios
 to be used as input to the radiative transfer simulations. \vspace{-1.0ex}
 
-\subsubsection*{WP2 : Emissivity model}
+\subsubsection*{WP 2 : Emissivity model}
 %
 \label{sec:emissivity}
 An important step to accomplish this task is the estimation of the surface
@@ -545,7 +545,7 @@ land and one for snow/sea-ice. This WP could potentially result in a separate
 journal article.
 \vspace{-1.0ex}
 
-\subsubsection*{WP3 : Database creation and post-processing}
+\subsubsection*{WP 3 : Database creation and post-processing}
 %
 \label{sec:database}	
 This WP covers the initiation and execution of the batch radiative
@@ -556,7 +556,7 @@ simulated, and later extension to cross-track scanners will be made. For the
 latter, a number of scan angles, between nadir and swath edge, will be covered.
 
 ARTS will be applied to generate simulated observations, based on the data and
-models from WP1 and WP2. For both types of scanners, overlapping antenna
+models from WP 1 and WP 2. For both types of scanners, overlapping antenna
 footprints of all frequencies will be explicitly simulated. To generate the
 antenna pattern at the desired frequency, a number of pencil beam radiative
 transfer calculations will be performed to incorporate both along-track and
@@ -567,12 +567,12 @@ forward model are vital for the success of the retrieval database. The WP
 output will be batches of simulated radiances.  \vspace{-1.0ex}
 
 
-\subsubsection*{WP4 : Retrieval setup}
+\subsubsection*{WP 4 : Retrieval setup}
 %
 \label{sec:setup}
 The retrievals will be made without introducing any re-mapping of the satellite
 measurements. All footprints inside a region would be used as input, following
-the size of the simulated scenes in the database generated in WP3. This
+the size of the simulated scenes in the database generated in WP 3. This
 approach will make much better use of the spatial information provided by the
 overlap of instrument footprints. The target resolution will not be
 compromised and retrievals can be made at the highest possible resolution,
@@ -591,7 +591,7 @@ neural-network architecture and auxiliary data required to achieve the best mode
 
 
 \vspace{-1.0ex}
-\subsubsection*{WP5 : Retrievals}
+\subsubsection*{WP 5 : Retrievals}
 %
 \label{sec:retrievals}
 %
@@ -604,15 +604,15 @@ using SSMIS. An extension to lower frequencies, such as 89\,GHz and channels aro
 %humidity profiles. 
 %The pivotal part of these retrievals would be using ML on the overlapping footprints to extract the hidden information without any explicit treatment.
 
-This WP will run concurrently with WP3 and WP6. We will set-up test retrievals as soon as few hundred thousand simulations are available, so that an early feedback on any database issues can be made. Besides, during the development phase, a basic evaluation (see Sect.~\ref{sec:evaluation}) of the retrievals with existing retrieval products will be made to identify the areas requiring improvement. Repetition of the retrievals will be made accordingly.
+This WP will run concurrently with WP 3 and WP 6. We will set-up test retrievals as soon as few hundred thousand simulations are available, so that an early feedback on any database issues can be made. Besides, during the development phase, a basic evaluation (see Sect.~\ref{sec:evaluation}) of the retrievals with existing retrieval products will be made to identify the areas requiring improvement. Repetition of the retrievals will be made accordingly.
 
 The output of this WP will be one or more retrieval databases for WVP, humidity profiles and LWC.
 \vspace{-1.0ex}
-\subsubsection*{WP6: Evaluation and dissemination}
+\subsubsection*{WP 6: Evaluation and dissemination}
 %
 \label{sec:evaluation}
 The primary task of this WP will be to evaluate the quality of the retrievals.  This would be done by comparisons with other existing products, both satellite based and reanalyses. Statistical comparisons will be made, e.g,\, time series analysis of daily and monthly means, and comparisons of the probability
-distribution functions. Comparisons over seasons and different surface types will also included. In the first stage, this WP would focus on identifying and understanding the areas of shortcomings so that the next iterations of the retrievals can be improved. This WP will also serve as an indirect evaluation of the emissivity model in WP2. In the second stage, when the retrieval product is finalized and time permits, the evaluation could be extended to include \textit{in-situ} data. Within a two-year time frame, a thorough investigation could be difficult to achieve, but efforts will be made to publicize the dataset(s). 
+distribution functions. Comparisons over seasons and different surface types will also included. In the first stage, this WP would focus on identifying and understanding the areas of shortcomings so that the next iterations of the retrievals can be improved. This WP will also serve as an indirect evaluation of the emissivity model in WP 2. In the second stage, when the retrieval product is finalized and time permits, the evaluation could be extended to include \textit{in-situ} data. Within a two-year time frame, a thorough investigation could be difficult to achieve, but efforts will be made to publicize the dataset(s). 
  
 %A thorough investigation with the available \textit{in-situ} data,
 %satellite products and reanalysis will be made. Firstly, direct comparisons
@@ -626,7 +626,7 @@ distribution functions. Comparisons over seasons and different surface types wil
 
 The dissemination of the retrieved dataset will also be through conferences and journal articles. The assessment of how well the produced dataset answers the needs of NWP communities will also be addressed through collaborations (see Sect.~\ref{sec:collaborations}) with ECMWF and the Swedish Meteorological and Hydrological Institute (SMHI). 
 \vspace{-1.0ex}
-\subsubsection*{WP7 : Additional Retrievals}
+\subsubsection*{WP 7 : Additional Retrievals}
 %
 \label{sec:other_retrievals}
 
