@@ -548,18 +548,18 @@ locally inside the division will meet the demands with margin
 \end{figure}
 
 \vspace{-1ex}
-\subsubsection*{WP 1: Basic atmospheric scenarios [1 - 6  months]}
+
+\subsubsection*{WP 1: Input scenarios [1 - 6 months]}
 %
 
 \label{sec:atmscenes}
-The inputs to the forward model can be based on either atmospheric models
-providing a sufficiently detailed description of hydrometeors or on
-measurements \citep{ekelund:using:20}. In this study, we will adopt the former
-approach and use reanalyses from CARRA (see Sect.~\ref{sec:harmonie}) to create
-a database of the atmospheric cases. CARRA does not cover all the Arctic
-regions, so if needed, reanalyses from ERA5 will be included. Furthermore, the use
-of high-resolution SAR imagery to characterize the sea-ice\,/\,open waters will be
-made (see Sect.~\ref{sec:sar}). The fine spatial resolution of SAR will
+The scenarios will be extracted from CARRA reanalyses
+(Sect.~\ref{sec:harmonie}). CARRA does not cover the full target area, but this
+is not necessarily a problem as we only need a statistical representation of
+the weather in the region. ERA5 reanalyses will be used as a complement, if we
+find that parts of the observations not are covered. Furthermore, the use of
+high-resolution SAR imagery to characterise the sea-ice\,/\,open waters will be
+made (Sect.~\ref{sec:sar}). The fine spatial resolution of SAR will
 facilitate better mapping of inhomogeneous surface types, and thus reduce
 errors with respect to mixed surface types such as polynyas. To our best
 knowledge, this shall be the first instance where such high-resolution
@@ -567,7 +567,9 @@ information would be used in this context. The output of this work package will
 be a broad set of 3D scenarios, based on collocated SAR and CARRA data, to be
 used as input to the radiative transfer simulations. \vspace{-1.0ex}
 
+
 \subsubsection*{WP 2 : Emissivity model [3 - 12 months]}
+
 %
 \label{sec:emissivity}
 An important step is the estimation of the surface emissivity spectra over a
@@ -644,8 +646,8 @@ neural-network architecture and auxiliary data required to achieve the best mode
 %
 \label{sec:retrievals}
 %
-In this WP, firstly we will extend our preliminary results for WVP (see
-Sect.~\ref{sec:preliminary_results}) to include regions north of 65$^\circ$,
+In this WP, firstly we will extend our preliminary results for WVP
+(Sect.~\ref{sec:preliminary_results}) to include regions north of 65$^\circ$,
 using SSMIS. An extension to lower frequencies, such as 89\,GHz and channels
 around 50\,GHz, will be tested. Including the latter can be beneficial to
 resolve the low-level cloudiness. In fact, the estimates of liquid water
@@ -666,7 +668,7 @@ vertical domain and also humidity profiles will be retrieved (by QRNN).
 %humidity profiles. 
 %The pivotal part of these retrievals would be using ML on the overlapping footprints to extract the hidden information without any explicit treatment.
 
-This WP will run concurrently with WP 3 and WP 6. We will set-up test retrievals as soon as few hundred thousand simulations are available, so that an early feedback on any database issues can be made. Besides, during the development phase, a basic evaluation (see Sect.~\ref{sec:evaluation}) of the retrievals with existing retrieval products will be made to identify the areas requiring improvement. Repetition of the retrievals will be made accordingly.
+This WP will run concurrently with WP 3 and WP 6. We will set-up test retrievals as soon as few hundred thousand simulations are available, so that an early feedback on any database issues can be made. Besides, during the development phase, a basic evaluation (Sect.~\ref{sec:evaluation}) of the retrievals with existing retrieval products will be made to identify the areas requiring improvement. Repetition of the retrievals will be made accordingly.
 
 The output of this WP will be one or more retrieval databases for WVP, humidity
 profiles and liquid water path.
