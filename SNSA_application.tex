@@ -50,7 +50,7 @@
 \section{General summary}
 %
 The Arctic is a water world, experiencing rapid warming. Passive microwave
-satellite measurements are required for a comprehensive view of the different forms of water in the region. The project targets water in the atmosphere, and the basic aim is to improve the utilisation of this data source, particularly by using high-frequency observations. The proposed retrieval system is highly versatile and retrievals of other water forms like liquid water content, snowfall, and sea-ice concentration (in order of priority) are also feasible.
+satellite measurements are required for a comprehensive view of the different forms of water in the region. The project targets water in the atmosphere, and the basic aim is to improve the utilisation of this data source, particularly by using high-frequency observations. The proposed retrieval system is highly versatile and retrievals of water forms like liquid water content, snowfall, and sea-ice concentration (in order of priority) are also feasible.
 
 We propose a physically-based, Bayesian-oriented, machine-learning model for
 the task. The model is trained with detailed 3D radiative transfer simulations,
@@ -418,7 +418,7 @@ The simulations cover four GMI channels: 166V, 166H, 183$\pm$3
 and 183$\pm$7\,GHz. The dbZ based
 system described in \citet{ekelund:using:20} is followed. The
 main inputs are radar reflectivities from CloudSat and ERA5 reanalysis data.
-Hydrometeor particles are assumed to be ARO (Sec.~\ref{sec:arts}), where the
+Hydrometeor particles are assumed to be ARO (Sect.~\ref{sec:arts}), where the
 approximation from \citet{barlakas:intro:21} is extended to operate with 
 a random scaling factor (instead of a fixed one), as well as being applied also
 on the CloudSat radar data.
@@ -504,7 +504,7 @@ this is rarely done.
 	\label{fig:WVP_retrievals}
 \end{figure*}
 
-The QRNN algorithm (Sec.~\ref{sec:qrnn}) is trained with radiances from
+The QRNN algorithm (Sect.~\ref{sec:qrnn}) is trained with radiances from
 simulated GMI data ($\sim$500\,000 simulations) for the frequencies: 166V,
 166H, 183$\pm$3 and 183$\pm$7\,GHz, to retrieve the corresponding WVPs.
 Two-metre temperature, latitude and surface type are also provided as auxiliary
@@ -548,7 +548,7 @@ locally inside the division will meet the demands with margin
 \end{figure}
 
 \vspace{-1ex}
-\subsubsection*{WP 1: Basic atmospheric scenarios}
+\subsubsection*{WP 1: Basic atmospheric scenarios [1 - 6  months]}
 %
 
 \label{sec:atmscenes}
@@ -567,7 +567,7 @@ information would be used in this context. The output of this work package will
 be a broad set of 3D scenarios, based on collocated SAR and CARRA data, to be
 used as input to the radiative transfer simulations. \vspace{-1.0ex}
 
-\subsubsection*{WP 2 : Emissivity model}
+\subsubsection*{WP 2 : Emissivity model [3 - 12 months]}
 %
 \label{sec:emissivity}
 An important step is the estimation of the surface emissivity spectra over a
@@ -594,7 +594,7 @@ land and one for snow\,/\,sea-ice. This WP could potentially result in a separat
 journal article.
 \vspace{-1.0ex}
 
-\subsubsection*{WP 3 : Database creation and post-processing}
+\subsubsection*{WP 3 : Database creation and post-processing [4 - 18 months]}
 %
 \label{sec:database}	
 This WP covers the initiation and execution of the batch radiative
@@ -616,7 +616,7 @@ forward model are vital for the success of the retrieval database. The WP
 output will be batches of simulated radiances.  \vspace{-1.0ex}
 
 
-\subsubsection*{WP 4 : Retrieval setup}
+\subsubsection*{WP 4 : Retrieval setup [6 - 18 months]}
 %
 \label{sec:setup}
 The retrievals will be made without introducing any re-mapping of the satellite
@@ -640,7 +640,7 @@ neural-network architecture and auxiliary data required to achieve the best mode
 
 
 \vspace{-1.0ex}
-\subsubsection*{WP 5 : Retrievals}
+\subsubsection*{WP 5 : Retrievals [7 - 18 months]}
 %
 \label{sec:retrievals}
 %
@@ -672,7 +672,7 @@ The output of this WP will be one or more retrieval databases for WVP, humidity
 profiles and liquid water path.
 \vspace{-1.0ex}
 
-\subsubsection*{WP 6: Evaluation and dissemination}
+\subsubsection*{WP 6: Evaluation and dissemination [8 - 24 months]}
 %
 \label{sec:evaluation}
 The primary task of this WP will be to evaluate the quality of the retrievals.
@@ -701,7 +701,7 @@ needs of NWP communities will also be addressed through collaborations with
 ECMWF and the Swedish Meteorological and Hydrological Institute (SMHI). See
 also Sect.~\ref{sec:collaborations}.
 \vspace{-1.0ex}
-\subsubsection*{WP 7 : Additional Retrievals}
+\subsubsection*{WP 7 : Additional Retrievals [20 - 24 months]}
 %
 \label{sec:other_retrievals}
 
@@ -742,7 +742,7 @@ navigational activity through the Arctic, which requires accurate weather
 forecasts to avoid accidents and oil spills.
 
 The overall retrieval procedure requires a deep understanding of the physics
-governing the observed radiances. This knowledge can be shared with the NWP community and an indirect significant impact of the data on weather forecasting can be expected. Work towards amplifying the ingestion observations in NWP will be covered in association with modelling community at SMHI and ECMWF (Sec.~\ref{sec:collaborations}).
+governing the observed radiances. This knowledge can be shared with the NWP community and an indirect significant impact of the data on weather forecasting can be expected. Work towards amplifying the ingestion observations in NWP will be covered in association with modelling community at SMHI and ECMWF (Sect.~\ref{sec:collaborations}).
 
 
 %A consistent database of standalone retrievals
